@@ -1,0 +1,11 @@
+<h3>{{title}}</h3>
+<md-card id="login-card">
+  <form (ngSubmit)="login()" #loginForm="ngForm">
+    <md-input placeholder="username" [(ngModel)]="creds.username" name="username" required></md-input>
+    <md-input placeholder="password" type="password" [(ngModel)]="creds.password" name="password" required></md-input>
+    <button type="submit" md-raised-button color="primary" [disabled]="!loginForm.form.valid">Login</button>
+  </form>
+  <div *ngIf="loginResponse">
+    <h4>{{loginResponse}}</h4>
+  </div>
+</md-card>
