@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { HttpModule } from '@angular/http';
 import { MaterialModule } from '@angular/material';
+import { CookieService } from 'angular2-cookie/services/cookies.service';
 
 import { AppComponent }  from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -47,6 +48,9 @@ import { LoginComponent } from './login/login.component';
     NewAccountComponent,
     AdminComponent,
     LoginComponent
+  ],
+  providers: [
+    CookieService
   ],
   bootstrap: [ AppComponent ]
 })

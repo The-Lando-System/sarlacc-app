@@ -2,7 +2,8 @@ import { Component, Input, OnInit } from '@angular/core';
 
 import { Credentials } from './credentials';
 import { LoginService } from './login.service';
-import { TestService } from './test.service';
+import { TestAccessService } from './test-access.service';
+import { Token } from './token';
 
 @Component({
   moduleId: module.id,
@@ -11,7 +12,7 @@ import { TestService } from './test.service';
   styleUrls: [ 'login.component.css' ],
   providers: [
     LoginService,
-    TestService
+    TestAccessService
   ]
 })
 export class LoginComponent implements OnInit {
@@ -25,7 +26,7 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private loginService: LoginService,
-    private testService: TestService
+    private testAccessService: TestAccessService
   ){}
 
   ngOnInit(): void {
@@ -41,7 +42,7 @@ export class LoginComponent implements OnInit {
   } 
 
   makeTestCall(): void {
-    this.testService.makeTestCall()
+    this.testAccessService.makeTestAccessCall()
       .then(res => {
         console.log(res);
         this.testResponse = JSON.stringify(res);

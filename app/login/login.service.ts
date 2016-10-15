@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Headers, Http } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
+import { CookieService } from 'angular2-cookie/services/cookies.service';
 
 import { Credentials } from './credentials';
+import { Token } from './token';
 
 @Injectable()
 export class LoginService {
@@ -14,16 +16,21 @@ export class LoginService {
   });
 
   constructor(
-    private http: Http
+    private http: Http,
+    private cookieService: CookieService
   ){}
 
 
-  login(creds: Credentials): Promise<void> {
+  login(creds: Credentials): Promise<Token> {
     creds.grant_type = 'password';
     let body = `username=${creds.username}&password=${creds.password}&grant_type=${creds.grant_type}`;
     return this.http.post(this.loginUrl, body, {headers: this.headers})
       .toPromise()
-      .then(res => res.json())
+      .then(res=>{
+        var token = res.json();
+        this.cookieService.put('access-token',token.access_token);
+        return token;
+      })
       .catch(this.handleError);
   }
 
