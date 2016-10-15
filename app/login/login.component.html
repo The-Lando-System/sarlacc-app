@@ -9,3 +9,9 @@
     <h4>{{loginResponse}}</h4>
   </div>
 </md-card>
+<md-card id="test-card">
+  <button type="submit" md-raised-button color="primary" (click)="makeTestCall()">Test your access</button>
+  <div *ngIf="testResponse">
+    <h4>{{testResponse}}</h4>
+  </div>
+</md-card>
