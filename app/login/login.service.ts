@@ -6,8 +6,12 @@ import { Credentials } from './credentials';
 
 @Injectable()
 export class LoginService {
-  private loginUrl = 'http://localhost:8080/authenticate';
-  private headers = new Headers({'Content-Type': 'application/json'});
+  private loginUrl = 'http://localhost:8080/oauth/token';
+  private fileReader: FileReader;
+  private headers = new Headers({
+    'Content-Type'   : 'application/x-www-form-urlencoded',
+    'Authorization'  : 'Basic ' + btoa('acme:acmesecret')
+  });
 
   constructor(
     private http: Http
@@ -15,8 +19,9 @@ export class LoginService {
 
 
   login(creds: Credentials): Promise<void> {
-    let url = `${this.loginUrl}?username=${creds.username}&password=${creds.password}`;
-    return this.http.post(url, creds, {headers: this.headers})
+    creds.grant_type = 'password';
+    let body = `username=${creds.username}&password=${creds.password}&grant_type=${creds.grant_type}`;
+    return this.http.post(this.loginUrl, body, {headers: this.headers})
       .toPromise()
       .then(res => res.json())
       .catch(this.handleError);
