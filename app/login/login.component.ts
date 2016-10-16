@@ -6,6 +6,9 @@ import { TestAccessService } from './test-access.service';
 import { Token } from './token';
 import { User } from './user';
 
+import { ErrorService } from '../error/error.service';
+import { Error } from '../error/error';
+
 @Component({
   moduleId: module.id,
   selector: 'my-login',
@@ -35,7 +38,8 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private loginService: LoginService,
-    private testAccessService: TestAccessService
+    private testAccessService: TestAccessService,
+    private errorService: ErrorService
   ){}
 
   ngOnInit(): void {
@@ -50,7 +54,9 @@ export class LoginComponent implements OnInit {
         this.loginResponseDetail = null;
       }).catch(res => {
         this.loginResponse = 'Error...';
-        this.loginResponseDetail = JSON.parse(res._body).error_description;
+
+        var error = this.errorService.handleError(res);
+        this.loginResponseDetail = error.status + ': ' + error.errorMessage;
       });
   } 
 
@@ -62,10 +68,11 @@ export class LoginComponent implements OnInit {
         this.testAccessResponse = 'Success!';
         this.testAccessResponseDetail = null;
       }).catch(res=>{
-        console.log(res);
         this.testAccessResponse = 'Error...';
-        this.testAccessResponseDetail = JSON.parse(res._body).error_description;
         this.user = null;
+
+        var error = this.errorService.handleError(res);
+        this.testAccessResponseDetail = error.status + ': ' + error.errorMessage;
       });
   }
 

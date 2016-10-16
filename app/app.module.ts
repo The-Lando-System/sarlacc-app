@@ -13,6 +13,8 @@ import { NewAccountComponent } from './new-account/new-account.component';
 import { AdminComponent } from './admin/admin.component';
 import { LoginComponent } from './login/login.component';
 
+import { ErrorService } from './error/error.service';
+
 @NgModule({
   imports: [ 
   	BrowserModule,
@@ -52,7 +54,8 @@ import { LoginComponent } from './login/login.component';
     LoginComponent
   ],
   providers: [
-    CookieService
+    CookieService,
+    ErrorService
   ],
   bootstrap: [ AppComponent ]
 })
