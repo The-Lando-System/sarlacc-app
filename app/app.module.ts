@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { HttpModule } from '@angular/http';
 import { MaterialModule } from '@angular/material';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CookieService } from 'angular2-cookie/services/cookies.service';
 
 import { AppComponent }  from './app.component';
@@ -17,6 +18,7 @@ import { LoginComponent } from './login/login.component';
   	BrowserModule,
   	FormsModule,
   	HttpModule,
+    NgbModule.forRoot(),
     MaterialModule.forRoot(),
     RouterModule.forRoot([
       {

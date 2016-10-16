@@ -30,8 +30,7 @@ export class LoginService {
         var token = res.json();
         this.cookieService.put('access-token',token.access_token);
         return token;
-      })
-      .catch(this.handleError);
+      });
   }
 
   private handleError(error: any): Promise<any> {
