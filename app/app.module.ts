@@ -12,6 +12,7 @@ import { HomeComponent } from './home/home.component';
 import { NewAccountComponent } from './new-account/new-account.component';
 import { AdminComponent } from './admin/admin.component';
 import { LoginComponent } from './login/login.component';
+import { OauthLoginComponent } from './login/oauth-login.component';
 
 import { ErrorService } from './error/error.service';
 
@@ -43,6 +44,10 @@ import { ErrorService } from './error/error.service';
       {
         path: 'login',
         component: LoginComponent
+      },
+      {
+        path: 'oauth-login',
+        component: OauthLoginComponent
       }
     ])
   ],
@@ -51,7 +56,8 @@ import { ErrorService } from './error/error.service';
   	HomeComponent,
     NewAccountComponent,
     AdminComponent,
-    LoginComponent
+    LoginComponent,
+    OauthLoginComponent
   ],
   providers: [
     CookieService,
