@@ -21,6 +21,7 @@ export class NewAccountService {
   ){}
 
   createNewAccount(newUser: User): Promise<any> {
+    newUser.role = 'USER';
     let access_token = this.cookieService.get('access-token');
     this.headers = new Headers({
       'Authorization'  : 'Bearer ' + access_token
