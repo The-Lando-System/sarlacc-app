@@ -13,8 +13,8 @@ import { ErrorService } from '../error/error.service'
 })
 export class NewAccountComponent implements OnInit {
   title = 'Create a New Account!';
-  newAccountResponse = null;
-  newAccountResponseDetail = null;
+  newAccountResponse = '';
+  newAccountResponseDetail = '';
   loading = false;
 
   @Input()
