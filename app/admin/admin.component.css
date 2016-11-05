@@ -1,0 +1,15 @@
+#admin-response-card {
+  max-width: 40%;
+}
+
+#edit-user-card {
+  max-width: 60%;
+}
+
+.list-group-item:hover {
+  background-color: #fcfcfc;
+}
+
+.list-group-item {
+  max-width: 100%;
+}

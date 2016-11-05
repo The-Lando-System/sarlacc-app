@@ -13,6 +13,7 @@ import { NewAccountComponent } from './new-account/new-account.component';
 import { AdminComponent } from './admin/admin.component';
 import { LoginComponent } from './login/login.component';
 import { OauthLoginComponent } from './login/oauth-login.component';
+import { UserDetailsComponent } from './admin/user-details.component';
 
 import { ErrorService } from './error/error.service';
 
@@ -57,7 +58,8 @@ import { ErrorService } from './error/error.service';
     NewAccountComponent,
     AdminComponent,
     LoginComponent,
-    OauthLoginComponent
+    OauthLoginComponent,
+    UserDetailsComponent
   ],
   providers: [
     CookieService,

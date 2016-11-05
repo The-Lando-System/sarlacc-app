@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 
 import { User } from '../login/user'
-import { NewAccountService } from './account.service'
+import { AccountService } from './account.service'
 import { ErrorService } from '../error/error.service'
 
 @Component({
@@ -9,7 +9,7 @@ import { ErrorService } from '../error/error.service'
   selector: 'my-new-account',
   templateUrl: 'new-account.component.html',
   styleUrls: [ 'new-account.component.css' ],
-  providers: [ NewAccountService ]
+  providers: [ AccountService ]
 })
 export class NewAccountComponent implements OnInit {
   title = 'Create a New Account!';
@@ -21,7 +21,7 @@ export class NewAccountComponent implements OnInit {
   newUser: User;
 
   constructor (
-    private newAccountService: NewAccountService,
+    private newAccountService: AccountService,
     private errorService: ErrorService
   ){}
 

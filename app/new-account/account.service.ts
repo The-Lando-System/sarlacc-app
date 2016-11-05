@@ -8,12 +8,8 @@ import { Token } from '../login/token';
 import { User } from '../login/user';
 
 @Injectable()
-export class NewAccountService {
+export class AccountService {
   private newAccountUrl = 'http://localhost:8080/account/';
-  private headers = new Headers({
-    //'Content-Type'   : 'application/x-www-form-urlencoded',
-    'Authorization'  : 'Basic ' + btoa('acme:acmesecret')
-  });
 
   constructor(
     private http: Http,
@@ -22,12 +18,27 @@ export class NewAccountService {
 
   createNewAccount(newUser: User): Promise<any> {
     newUser.role = 'USER';
+    return this.http.post(this.newAccountUrl, newUser, {headers: this.getHeaders()})
+      .toPromise();
+  }
+
+  editAccount(userToEdit: User): Promise<any> {
+    return this.http.put(this.newAccountUrl, userToEdit, {headers: this.getHeaders()})
+      .toPromise();
+  }
+
+  getUsers(): Promise<User[]> {
+    return this.http.get(this.newAccountUrl, {headers: this.getHeaders()})
+      .toPromise()
+      .then(res => res.json());
+  }
+
+  getHeaders(): Headers {
     let access_token = this.cookieService.get('access-token');
-    this.headers = new Headers({
+    let headers = new Headers({
       'Authorization'  : 'Bearer ' + access_token
     });
-    return this.http.post(this.newAccountUrl, newUser, {headers: this.headers})
-      .toPromise();
+    return headers;
   }
 
 }
