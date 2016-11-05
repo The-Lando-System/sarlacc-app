@@ -13,8 +13,9 @@ import { ErrorService } from '../error/error.service'
 })
 export class NewAccountComponent implements OnInit {
   title = 'Create a New Account!';
-  newAccountResponse = '';
-  newAccountResponseDetail = '';
+  newAccountResponse = null;
+  newAccountResponseDetail = null;
+  loading = false;
 
   @Input()
   newUser: User;
@@ -29,19 +30,27 @@ export class NewAccountComponent implements OnInit {
   }
 
   createNewAccount(): void {
+    this.clearStatus();
+    this.loading = true;
     this.newAccountService.createNewAccount(this.newUser)
     .then(res => {
         console.log(res);
         this.newAccountResponse = 'Success!';
         this.newAccountResponseDetail = null;
+        this.loading = false;
     }).catch(res => {
         this.newAccountResponse = 'Error...';
         var error = this.errorService.handleError(res);
         this.newAccountResponseDetail = error.status + ': ' + error.errorMessage;
+        this.loading = false;
     });
   }
 
-
+  clearStatus(): void {
+    this.newAccountResponse = null;
+    this.newAccountResponseDetail = null;
+    this.loading = false;
+  }
 
 
 }

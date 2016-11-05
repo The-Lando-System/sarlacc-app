@@ -11,7 +11,7 @@ import { User } from '../login/user';
 export class NewAccountService {
   private newAccountUrl = 'http://localhost:8080/account/';
   private headers = new Headers({
-    'Content-Type'   : 'application/x-www-form-urlencoded',
+    //'Content-Type'   : 'application/x-www-form-urlencoded',
     'Authorization'  : 'Basic ' + btoa('acme:acmesecret')
   });
 

@@ -10,8 +10,13 @@ export class ErrorService {
     var errMsg = <any>{};
     try {
       errMsg = JSON.parse(inError._body);
-      outError.errorMessage = errMsg.error_description;
-      outError.status = inError.status;
+      if (errMsg.hasOwnProperty('error_description')){
+        outError.errorMessage = errMsg.error_description;
+        outError.status = inError.status;
+      } else if (errMsg.hasOwnProperty('message')) {
+        outError.errorMessage = errMsg.message;
+        outError.status = inError.status;
+      }
     } catch(e) {
       outError.errorMessage = 'Unable to connect to server';
       outError.status = '404';

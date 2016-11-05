@@ -35,6 +35,8 @@ export class LoginComponent implements OnInit {
   loginResponseDetail = '';
   testAccessResponse = '';
   testAccessResponseDetail = '';
+  loginLoading = false;
+  testLoading = false;
 
   constructor(
     private loginService: LoginService,
@@ -47,32 +49,38 @@ export class LoginComponent implements OnInit {
   }
 
   login(): void {
+    this.loginLoading = true;
     this.loginService.login(this.creds)
       .then(res => {
         console.log(res);
         this.loginResponse = 'Success! Your token is saved as access-token in your cookies';
         this.loginResponseDetail = null;
+        this.loginLoading = false;
       }).catch(res => {
         this.loginResponse = 'Error...';
 
         var error = this.errorService.handleError(res);
         this.loginResponseDetail = error.status + ': ' + error.errorMessage;
+        this.loginLoading = false;
       });
   } 
 
   makeTestCall(): void {
+    this.testLoading = true;
     this.testAccessService.makeTestAccessCall()
       .then(res => {
         this.user = res;
         console.log(res);
         this.testAccessResponse = 'Success!';
         this.testAccessResponseDetail = null;
+        this.testLoading = false;
       }).catch(res=>{
         this.testAccessResponse = 'Error...';
         this.user = null;
 
         var error = this.errorService.handleError(res);
         this.testAccessResponseDetail = error.status + ': ' + error.errorMessage;
+        this.testLoading = false;
       });
   }
 

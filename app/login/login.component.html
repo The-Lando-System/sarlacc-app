@@ -4,7 +4,8 @@
     <md-input placeholder="username" [(ngModel)]="creds.username" name="username" required></md-input>
     <md-input placeholder="password" type="password" [(ngModel)]="creds.password" name="password" required></md-input>
     <br/>
-    <button type="submit" class="btn btn-secondary" [disabled]="!loginForm.form.valid">Login</button>
+    <button *ngIf="!loginLoading" type="submit" class="btn btn-secondary" [disabled]="!loginForm.form.valid">Login</button>
+    <i *ngIf="loginLoading" class="fa fa-spinner fa-spin" aria-hidden="true"></i>
   </form>
   <div *ngIf="loginResponse">
     <h4>{{loginResponse}}</h4>
@@ -14,7 +15,8 @@
   </div>
 </md-card>
 <md-card id="test-card">
-  <button class="btn btn-secondary" (click)="makeTestCall()">Test your access</button>
+  <button *ngIf="!testLoading" class="btn btn-secondary" (click)="makeTestCall()">Test your access</button>
+  <i *ngIf="testLoading" class="fa fa-spinner fa-spin" aria-hidden="true"></i>
   <div *ngIf="testAccessResponse">
     <h4>{{testAccessResponse}}</h4>
   </div>
