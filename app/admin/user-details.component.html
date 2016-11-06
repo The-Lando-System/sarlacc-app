@@ -1,7 +1,6 @@
 <md-card *ngIf="selectedUser" id="edit-user-card">
   <form (ngSubmit)="editAccount()" #editUserForm="ngForm">
-    <md-input placeholder="Username" [(ngModel)]="selectedUser.username" name="username" required></md-input>
-    <md-input placeholder="Password" type="password" [(ngModel)]="selectedUser.password" name="password" required></md-input>
+    <md-input placeholder="Username" [(ngModel)]="selectedUser.username" name="username" disabled></md-input>
     <md-input placeholder="First Name" [(ngModel)]="selectedUser.firstName" name="firstName" required></md-input>
     <md-input placeholder="Last Name" [(ngModel)]="selectedUser.lastName" name="lastName" required></md-input>
     <md-input placeholder="Email" [(ngModel)]="selectedUser.email" name="email" required></md-input>

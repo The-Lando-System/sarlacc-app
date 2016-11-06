@@ -43,6 +43,10 @@ import { ErrorService } from './error/error.service';
         component: AdminComponent
       },
       {
+        path: 'admin/:id',
+        component: AdminComponent
+      },
+      {
         path: 'login',
         component: LoginComponent
       },

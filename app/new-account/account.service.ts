@@ -33,6 +33,12 @@ export class AccountService {
       .then(res => res.json());
   }
 
+  getUserById(id: String): Promise<User> {
+    return this.http.get(this.newAccountUrl + id, {headers: this.getHeaders()})
+      .toPromise()
+      .then(res => res.json());
+  }
+
   getHeaders(): Headers {
     let access_token = this.cookieService.get('access-token');
     let headers = new Headers({
