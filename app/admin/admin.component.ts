@@ -45,6 +45,9 @@ export class AdminComponent implements OnInit {
     this.getUsers();
   }
 
+  ngOnChanges(changes: any) {
+    console.log(changes);
+  }
 
   selectUser(selectedUser: User): void {
     this.selectedUser = selectedUser;

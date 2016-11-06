@@ -15,19 +15,6 @@
   </a>
 </div>
 <div class="col-md-9">
-  <user-details *ngIf="selectedUser" [selectedUser]="selectedUser">
+  <user-details *ngIf="selectedUser" [(users)]="users" [(selectedUser)]="selectedUser">
   </user-details>
-  <!-- <md-card *ngIf="selectedUser" id="edit-user-card">
-    <form (ngSubmit)="editAccount()" #editUserForm="ngForm">
-      <md-input placeholder="Username" [(ngModel)]="selectedUser.username" name="username" required></md-input>
-      <md-input placeholder="Password" type="password" [(ngModel)]="selectedUser.password" name="password" required></md-input>
-      <md-input placeholder="First Name" [(ngModel)]="selectedUser.firstName" name="firstName" required></md-input>
-      <md-input placeholder="Last Name" [(ngModel)]="selectedUser.lastName" name="lastName" required></md-input>
-      <md-input placeholder="Email" [(ngModel)]="selectedUser.email" name="email" required></md-input>
-      <br/>
-      <button type="submit" class="btn btn-secondary" [disabled]="!editUserForm.form.valid">Update</button>
-      <a class="btn btn-secondary" (click)="deleteUser(selectedUser)">Delete</a>
-    </form>
-    
-  </md-card> -->
 </div>

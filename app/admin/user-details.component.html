@@ -8,5 +8,11 @@
     <button type="submit" class="btn btn-secondary" [disabled]="!editUserForm.form.valid">Update</button>
     <a class="btn btn-secondary" (click)="deleteUser(selectedUser)">Delete</a>
   </form>
-  
+  <i *ngIf="loading" class="fa fa-spinner fa-spin" aria-hidden="true"></i>
+  <div *ngIf="response">
+    <h4>{{response}}</h4>
+  </div>
+  <div *ngIf="responseDetail">
+    <p>{{responseDetail}}</p>
+  </div>
 </md-card>

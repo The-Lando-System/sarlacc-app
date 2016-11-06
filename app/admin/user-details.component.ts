@@ -1,4 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Router } from '@angular/router';
+
 import { AccountService } from '../new-account/account.service';
 import { ErrorService } from '../error/error.service';
 import { User } from '../login/user';
@@ -12,34 +14,48 @@ import { User } from '../login/user';
 })
 export class UserDetailsComponent implements OnInit {
 
+  response = '';
+  responseDetail = '';
+  loading = false;
+
   constructor (
     private accountService: AccountService,
-    private errorService: ErrorService
+    private errorService: ErrorService,
+    private router: Router
   ){}
 
   @Input()
   selectedUser: User;
 
+  @Input()
+  users: User[];
+
   ngOnInit(): void {
+    this.clearStatus();
+  }
+
+  ngOnChanges(changes: any) {
+    this.clearStatus();
   }
 
   editAccount(): void {
     console.log('Editing user inside user-details component');
     console.log(this.selectedUser);
-    // this.clearStatus();
-    // this.loading = true;
-    // this.accountService.editAccount(userToEdit)
-    // .then(res => {
-    //     console.log(res);
-    //     this.accountResponse = 'Success!';
-    //     this.accountResponseDetail = null;
-    //     this.loading = false;
-    // }).catch(res => {
-    //     this.accountResponse = 'Error...';
-    //     var error = this.errorService.handleError(res);
-    //     this.accountResponseDetail = error.status + ': ' + error.errorMessage;
-    //     this.loading = false;
-    // });
+    this.clearStatus();
+    this.loading = true;
+    this.accountService.editAccount(this.selectedUser)
+    .then(res => {
+        console.log(res);
+        this.response = 'Success!';
+        this.responseDetail = null;
+        this.loading = false;
+        this.updateUserList();
+    }).catch(res => {
+        this.response = 'Error...';
+        var error = this.errorService.handleError(res);
+        this.responseDetail = error.status + ': ' + error.errorMessage;
+        this.loading = false;
+    });
   }
 
   deleteUser(): void {
@@ -47,6 +63,20 @@ export class UserDetailsComponent implements OnInit {
     if (wantToDelete) {
       // Delete the selected user
     }
+  }
+
+  updateUserList(): void {
+    for(var i=0; i<this.users.length; i++){
+      if (this.users[i].id === this.selectedUser.id){
+        this.users[i] = this.selectedUser;
+      }
+    }
+  }
+
+  clearStatus(): void {
+    this.response = '';
+    this.responseDetail = '';
+    this.loading = false;
   }
 
 }
