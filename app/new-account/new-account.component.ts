@@ -1,4 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Location } from '@angular/common';
 
 import { User } from '../login/user'
 import { AccountService } from './account.service'
@@ -22,7 +24,8 @@ export class NewAccountComponent implements OnInit {
 
   constructor (
     private newAccountService: AccountService,
-    private errorService: ErrorService
+    private errorService: ErrorService,
+    private router: Router
   ){}
 
   ngOnInit(): void {
@@ -38,6 +41,7 @@ export class NewAccountComponent implements OnInit {
         this.newAccountResponse = 'Success!';
         this.newAccountResponseDetail = null;
         this.loading = false;
+        this.newUser = new User();
     }).catch(res => {
         this.newAccountResponse = 'Error...';
         var error = this.errorService.handleError(res);

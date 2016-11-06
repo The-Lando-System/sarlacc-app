@@ -27,6 +27,11 @@ export class AccountService {
       .toPromise();
   }
 
+  deleteAccount(userToDelete: User): Promise<any> {
+    return this.http.delete(this.newAccountUrl + userToDelete.id, {headers: this.getHeaders()})
+      .toPromise();
+  }
+
   getUsers(): Promise<User[]> {
     return this.http.get(this.newAccountUrl, {headers: this.getHeaders()})
       .toPromise()

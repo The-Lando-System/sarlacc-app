@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
+import { Location } from '@angular/common';
 
 import { AccountService } from '../new-account/account.service';
 import { ErrorService } from '../error/error.service';
@@ -61,7 +62,29 @@ export class UserDetailsComponent implements OnInit {
   deleteUser(): void {
     let wantToDelete = confirm('Are you sure you want to delete this user?');
     if (wantToDelete) {
-      // Delete the selected user
+      this.accountService.deleteAccount(this.selectedUser)
+      .then(res => {
+          console.log(res);
+          this.response = 'Success!';
+          this.responseDetail = null;
+          this.loading = false;
+          this.deleteUserFromList(this.selectedUser.id);
+          let link = ['/admin'];
+          this.router.navigate(link);
+      }).catch(res => {
+          this.response = 'Error...';
+          var error = this.errorService.handleError(res);
+          this.responseDetail = error.status + ': ' + error.errorMessage;
+          this.loading = false;
+      });
+    }
+  }
+
+  deleteUserFromList(id: String): void {
+    for(var i=0; i<this.users.length; i++){
+      if (this.users[i].id === id){
+        this.users = this.users.splice(i,1);
+      }
     }
   }
 
