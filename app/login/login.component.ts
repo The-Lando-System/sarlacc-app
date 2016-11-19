@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ActivatedRoute, Params } from '@angular/router';
 
 import { Credentials } from './credentials';
 import { LoginService } from './login.service';
@@ -38,16 +39,21 @@ export class LoginComponent implements OnInit {
   testAccessResponseDetail = '';
   loginLoading = false;
   testLoading = false;
+  redirectUri = '';
 
   constructor(
     private loginService: LoginService,
     private testAccessService: TestAccessService,
     private errorService: ErrorService,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ){}
 
   ngOnInit(): void {
     this.creds = new Credentials();
+    this.route.queryParams.forEach((params: Params) => {
+      this.redirectUri = params['redirectUri'];
+    })
   }
 
   login(): void {
@@ -55,10 +61,15 @@ export class LoginComponent implements OnInit {
     this.loginService.login(this.creds)
       .then(res => {
         console.log(res);
+        this.token = res;
         this.loginResponse = 'Success! Your token is saved as access-token in your cookies';
         this.loginResponseDetail = null;
         this.loginLoading = false;
         this.creds = new Credentials();
+        if (this.redirectUri){
+          //this.router.navigate([this.redirectUri]);
+          window.location.href = this.redirectUri + '?access_token=' + this.token.access_token;
+        }
       }).catch(res => {
         this.loginResponse = 'Error...';
 
