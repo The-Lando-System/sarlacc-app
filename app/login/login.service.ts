@@ -1,10 +1,11 @@
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 import { Headers, Http } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 import { CookieService } from 'angular2-cookie/services/cookies.service';
 
 import { Credentials } from './credentials';
 import { Token } from './token';
+import { Broadcaster } from '../broadcaster';
 
 @Injectable()
 export class LoginService {
@@ -14,10 +15,10 @@ export class LoginService {
     'Content-Type'   : 'application/x-www-form-urlencoded',
     'Authorization'  : 'Basic ' + btoa('acme:acmesecret')
   });
-
   constructor(
     private http: Http,
-    private cookieService: CookieService
+    private cookieService: CookieService,
+    private broadcaster: Broadcaster
   ){}
 
 
@@ -29,6 +30,7 @@ export class LoginService {
       .then(res=>{
         var token = res.json();
         this.cookieService.put('access-token',token.access_token);
+        this.broadcaster.broadcast('Login','The user logged in');
         return token;
       });
   }

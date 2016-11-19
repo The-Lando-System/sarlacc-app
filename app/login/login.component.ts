@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { Credentials } from './credentials';
 import { LoginService } from './login.service';
@@ -41,7 +42,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private loginService: LoginService,
     private testAccessService: TestAccessService,
-    private errorService: ErrorService
+    private errorService: ErrorService,
+    private router: Router
   ){}
 
   ngOnInit(): void {
@@ -56,6 +58,7 @@ export class LoginComponent implements OnInit {
         this.loginResponse = 'Success! Your token is saved as access-token in your cookies';
         this.loginResponseDetail = null;
         this.loginLoading = false;
+        this.creds = new Credentials();
       }).catch(res => {
         this.loginResponse = 'Error...';
 

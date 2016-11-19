@@ -1,20 +1,60 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+
+import { User } from './login/user';
+import { TestAccessService } from './login/test-access.service';
+import { ErrorService } from './error/error.service';
+import { Broadcaster } from './broadcaster';
 
 @Component({
   moduleId: module.id,
   selector: 'my-app',
-  template: `
-    <h1>{{title}}</h1>
-    <nav>
-      <a routerLink="/home" routerLinkActive="active">Home</a>
-      <a routerLink="/new-account" routerLinkActive="active">Create Account</a>
-      <a routerLink="/admin" routerLinkActive="active">Administration</a>
-      <a routerLink="/login" routerLinkActive="active">Login</a>
-    </nav>
-    <router-outlet></router-outlet>
-  `,
-  styleUrls: [ 'app.component.css' ]
+  templateUrl: 'app.component.html',
+  styleUrls: [ 'app.component.css' ],
+  providers: [
+    TestAccessService,
+    Broadcaster
+  ]
 })
 export class AppComponent {
-  title = 'Sarlacc';
+
+  @Input()
+  currentUser: User;
+
+  welcome = '';
+
+  constructor(
+    private testAccessService: TestAccessService,
+    private errorService: ErrorService,
+    private broadcaster: Broadcaster
+  ){}
+
+  ngOnInit(): void {
+    this.broadcaster.on<string>('Login')
+    .subscribe(message => {
+      this.userLoggedIn(message);
+    });
+    this.testAccessService.makeTestAccessCall()
+      .then(res => {
+        this.currentUser = res;
+        this.welcome = '- Welcome ' + this.currentUser.firstName + '!';
+      }).catch(res=>{
+        this.currentUser = null;
+        var error = this.errorService.handleError(res);
+      });
+  }
+
+  userLoggedIn(message: String): void {
+    console.log(message);
+    this.ngOnInit();
+  }
+
+  isAdmin(): boolean {
+    if (this.currentUser != null && this.currentUser.role == 'ADMIN') {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+
 }
