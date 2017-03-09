@@ -7,7 +7,7 @@ import { User } from './user';
 
 @Injectable()
 export class TestAccessService {
-  private testUrl = 'http://localhost:8080/user-details';
+  private testUrl = 'https://sarlacc.herokuapp.com/user-details';
   private fileReader: FileReader;
   private headers: Headers;
 

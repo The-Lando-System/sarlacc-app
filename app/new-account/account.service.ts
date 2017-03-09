@@ -9,7 +9,7 @@ import { User } from '../login/user';
 
 @Injectable()
 export class AccountService {
-  private newAccountUrl = 'http://localhost:8080/account/';
+  private newAccountUrl = 'https://sarlacc.herokuapp.com/account/';
 
   constructor(
     private http: Http,

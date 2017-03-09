@@ -9,11 +9,11 @@ import { Broadcaster } from '../broadcaster';
 
 @Injectable()
 export class LoginService {
-  private loginUrl = 'http://localhost:8080/oauth/token';
+  private loginUrl = 'https://sarlacc.herokuapp.com/oauth/token';
   private fileReader: FileReader;
   private headers = new Headers({
     'Content-Type'   : 'application/x-www-form-urlencoded',
-    'Authorization'  : 'Basic ' + btoa('acme:acmesecret')
+    'Authorization'  : 'Basic ' + btoa('sarlacc:deywannawanga')
   });
   constructor(
     private http: Http,
