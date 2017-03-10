@@ -1,1 +1,1 @@
-npm run typings init && npm start
+npm start
