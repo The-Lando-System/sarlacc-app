@@ -1,12 +1,12 @@
 <h4>{{title}}</h4>
-<md-card *ngIf="accountResponse" id="admin-response-card">
+<div *ngIf="accountResponse" id="admin-response-card">
   <div *ngIf="accountResponse">
     <h4>{{accountResponse}}</h4>
   </div>
   <div *ngIf="accountResponseDetail">
     <p>{{accountResponseDetail}}</p>
   </div>
-</md-card>
+</div>
 <i *ngIf="loading" class="fa fa-spinner fa-spin" aria-hidden="true"></i>
 <div class="list-group col-md-3">
   <a *ngFor="let user of users" class="list-group-item" (click)="selectUser(user)">

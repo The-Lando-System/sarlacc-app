@@ -1,11 +1,11 @@
 <h4>{{title}}</h4>
-<md-card id="new-user-card">
+<div id="new-user-card">
   <form (ngSubmit)="createNewAccount()" #newUserForm="ngForm">
-    <md-input placeholder="Username" [(ngModel)]="newUser.username" name="username" required></md-input>
-    <md-input placeholder="Password" type="password" [(ngModel)]="newUser.password" name="password" required></md-input>
-    <md-input placeholder="First Name" [(ngModel)]="newUser.firstName" name="firstName" required></md-input>
-    <md-input placeholder="Last Name" [(ngModel)]="newUser.lastName" name="lastName" required></md-input>
-    <md-input placeholder="Email" [(ngModel)]="newUser.email" name="email" required></md-input>
+    <input class="form-control" placeholder="Username" [(ngModel)]="newUser.username" name="username" required />
+    <input class="form-control" placeholder="Password" type="password" [(ngModel)]="newUser.password" name="password" required />
+    <input class="form-control" placeholder="First Name" [(ngModel)]="newUser.firstName" name="firstName" required />
+    <input class="form-control" placeholder="Last Name" [(ngModel)]="newUser.lastName" name="lastName" required />
+    <input class="form-control" placeholder="Email" [(ngModel)]="newUser.email" name="email" required />
     <br/>
     <button *ngIf="!loading" type="submit" class="btn btn-secondary" [disabled]="!newUserForm.form.valid">Create</button>
     <i *ngIf="loading" class="fa fa-spinner fa-spin" aria-hidden="true"></i>
@@ -16,4 +16,4 @@
   <div *ngIf="newAccountResponseDetail">
     <p>{{newAccountResponseDetail}}</p>
   </div>
-</md-card>
+</div>

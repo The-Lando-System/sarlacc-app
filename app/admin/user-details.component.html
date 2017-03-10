@@ -1,9 +1,9 @@
-<md-card *ngIf="selectedUser" id="edit-user-card">
+<div *ngIf="selectedUser" id="edit-user-card">
   <form (ngSubmit)="editAccount()" #editUserForm="ngForm">
-    <md-input placeholder="Username" [(ngModel)]="selectedUser.username" name="username" disabled></md-input>
-    <md-input placeholder="First Name" [(ngModel)]="selectedUser.firstName" name="firstName" required></md-input>
-    <md-input placeholder="Last Name" [(ngModel)]="selectedUser.lastName" name="lastName" required></md-input>
-    <md-input placeholder="Email" [(ngModel)]="selectedUser.email" name="email" required></md-input>
+    <input class="form-control" placeholder="Username" [(ngModel)]="selectedUser.username" name="username" disabled />
+    <input class="form-control" placeholder="First Name" [(ngModel)]="selectedUser.firstName" name="firstName" required />
+    <input class="form-control" placeholder="Last Name" [(ngModel)]="selectedUser.lastName" name="lastName" required />
+    <input class="form-control" placeholder="Email" [(ngModel)]="selectedUser.email" name="email" required />
     <br/>
     <button type="submit" class="btn btn-secondary" [disabled]="!editUserForm.form.valid">Update</button>
     <a class="btn btn-secondary" (click)="deleteUser(selectedUser)">Delete</a>
@@ -15,4 +15,4 @@
   <div *ngIf="responseDetail">
     <p>{{responseDetail}}</p>
   </div>
-</md-card>
+</div>
