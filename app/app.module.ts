@@ -3,7 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { HttpModule } from '@angular/http';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CookieService } from 'angular2-cookie/services/cookies.service';
 
 import { AppComponent }  from './app.component';
@@ -20,7 +19,6 @@ import { ErrorService } from './error/error.service';
   	BrowserModule,
   	FormsModule,
   	HttpModule,
-    NgbModule.forRoot(),
     RouterModule.forRoot([
       {
         path: '',
