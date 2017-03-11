@@ -1,8 +1,20 @@
-<h1>Sarlacc {{welcome}}</h1>
-<nav>
-  <a routerLink="/home" routerLinkActive="active">Home</a>
-  <a *ngIf="isAdmin()" routerLink="/new-account" routerLinkActive="active">Create Account</a>
-  <a *ngIf="isAdmin()" routerLink="/admin" routerLinkActive="active">Administration</a>
-  <a routerLink="/login" routerLinkActive="active">Login</a>
-</nav>
-<router-outlet></router-outlet>
+<div class="row">
+  <div class="container">
+    <h1>Sarlacc {{welcome}}</h1>
+  </div>
+</div>
+<div class="row">
+  <div class="container">
+    <nav>
+      <a routerLink="/home" routerLinkActive="active">Home</a>
+      <a *ngIf="isAdmin()" routerLink="/new-account" routerLinkActive="active">Create Account</a>
+      <a *ngIf="isAdmin()" routerLink="/admin" routerLinkActive="active">Administration</a>
+      <a routerLink="/login" routerLinkActive="active">Login</a>
+    </nav>
+  </div>
+</div>
+<div class="row">
+  <div class="container">
+    <router-outlet></router-outlet>
+  </div>
+</div>

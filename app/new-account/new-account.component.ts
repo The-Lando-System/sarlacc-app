@@ -18,6 +18,8 @@ export class NewAccountComponent implements OnInit {
   newAccountResponse = '';
   newAccountResponseDetail = '';
   loading = false;
+  password1 = '';
+  password2 = '';
 
   @Input()
   newUser: User;
@@ -30,11 +32,24 @@ export class NewAccountComponent implements OnInit {
 
   ngOnInit(): void {
     this.newUser = new User();
+    this.password1 = '';
+    this.password2 = '';
   }
 
   createNewAccount(): void {
+    
     this.clearStatus();
+
+    if ((this.password1 || this.password2) && (this.password1 !== this.password2)){
+      this.newAccountResponse = 'Error...';
+      this.newAccountResponseDetail = 'Passwords do not match!';
+      return;
+    } else {
+      this.newUser.password = this.password1;
+    }
+
     this.loading = true;
+
     this.newAccountService.createNewAccount(this.newUser)
     .then(res => {
         console.log(res);
@@ -42,6 +57,8 @@ export class NewAccountComponent implements OnInit {
         this.newAccountResponseDetail = null;
         this.loading = false;
         this.newUser = new User();
+        this.password1 = '';
+        this.password2 = '';
     }).catch(res => {
         this.newAccountResponse = 'Error...';
         var error = this.errorService.handleError(res);

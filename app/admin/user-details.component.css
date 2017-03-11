@@ -1,3 +1,11 @@
-#edit-user-card {
-  max-width: 60%;
+.buttons {
+  margin-top: 20px;
+}
+
+.user-input {
+  margin-top: 10px;
+}
+
+.response {
+  margin-top: 10px;
 }

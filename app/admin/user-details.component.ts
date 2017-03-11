@@ -19,6 +19,9 @@ export class UserDetailsComponent implements OnInit {
   responseDetail = '';
   loading = false;
 
+  password1 = '';
+  password2 = '';
+
   constructor (
     private accountService: AccountService,
     private errorService: ErrorService,
@@ -33,16 +36,31 @@ export class UserDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.clearStatus();
+    this.password1 = '';
+    this.password2 = '';
   }
 
   ngOnChanges(changes: any) {
     this.clearStatus();
+    this.password1 = '';
+    this.password2 = '';
   }
 
   editAccount(): void {
     console.log('Editing user inside user-details component');
     console.log(this.selectedUser);
     this.clearStatus();
+    
+    if ((this.password1 || this.password2) && (this.password1 !== this.password2)){
+      this.response = 'Error...';
+      this.responseDetail = 'Passwords do not match!';
+      return;
+    } else {
+      this.selectedUser.password = this.password1;
+    }
+
+    console.log(this.selectedUser);
+
     this.loading = true;
     this.accountService.editAccount(this.selectedUser)
     .then(res => {
@@ -50,6 +68,8 @@ export class UserDetailsComponent implements OnInit {
         this.response = 'Success!';
         this.responseDetail = null;
         this.loading = false;
+        this.password1 = '';
+        this.password2 = '';
         this.updateUserList();
     }).catch(res => {
         this.response = 'Error...';

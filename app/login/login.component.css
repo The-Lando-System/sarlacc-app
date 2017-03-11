@@ -1,9 +1,9 @@
-#login-card {
-  max-width: 30%;
+.card {
+  /*max-width: 30%;*/
 }
 
-#test-card {
-  max-width: 30%;
+input {
+  margin-top: 10px;
 }
 
 button {

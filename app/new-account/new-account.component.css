@@ -1,7 +1,11 @@
-#new-user-card {
-  max-width: 30%;
+.user-input {
+  margin-top: 10px;
 }
 
-button {
+.buttons {
+  margin-top: 20px;
+}
+
+.response {
   margin-top: 10px;
 }

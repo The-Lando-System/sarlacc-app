@@ -1,19 +1,48 @@
-<h4>{{title}}</h4>
-<div id="new-user-card">
-  <form (ngSubmit)="createNewAccount()" #newUserForm="ngForm">
-    <input class="form-control" placeholder="Username" [(ngModel)]="newUser.username" name="username" required />
-    <input class="form-control" placeholder="Password" type="password" [(ngModel)]="newUser.password" name="password" required />
-    <input class="form-control" placeholder="First Name" [(ngModel)]="newUser.firstName" name="firstName" required />
-    <input class="form-control" placeholder="Last Name" [(ngModel)]="newUser.lastName" name="lastName" required />
-    <input class="form-control" placeholder="Email" [(ngModel)]="newUser.email" name="email" required />
-    <br/>
-    <button *ngIf="!loading" type="submit" class="btn btn-secondary" [disabled]="!newUserForm.form.valid">Create</button>
-    <i *ngIf="loading" class="fa fa-spinner fa-spin" aria-hidden="true"></i>
-  </form>
-  <div *ngIf="newAccountResponse">
-    <h4>{{newAccountResponse}}</h4>
+<div class="row">
+  <div class="container">
+    <h4>{{title}}</h4>
   </div>
-  <div *ngIf="newAccountResponseDetail">
-    <p>{{newAccountResponseDetail}}</p>
+</div>
+<div class="row">
+  <div class="container">
+    <div class="col-md-8">
+      <div class="card">
+        <div class="card-block">
+          <form (ngSubmit)="createNewAccount()" #newUserForm="ngForm">
+            <div class="col-md-12 user-input">
+              <input class="form-control" placeholder="Username" [(ngModel)]="newUser.username" name="username" required />
+            </div>
+            <div class="col-md-6 user-input">
+              <input class="form-control" placeholder="First Name" [(ngModel)]="newUser.firstName" name="firstName" required />
+            </div>
+            <div class="col-md-6 user-input">
+              <input class="form-control" placeholder="Last Name" [(ngModel)]="newUser.lastName" name="lastName" required />
+            </div>
+            <div class="col-md-12 user-input">
+              <input class="form-control" placeholder="Email" type="email" [(ngModel)]="newUser.email" name="email" required />
+            </div>
+            <div class="col-md-6 user-input">
+              <input class="form-control" placeholder="Enter Password" type="password" [(ngModel)]="password1" name="password1" required />
+            </div>
+            <div class="col-md-6 user-input">
+              <input class="form-control" placeholder="Confirm Password" type="password" [(ngModel)]="password2" name="password2" required />
+            </div>
+            <br/>
+            <div class="col-md-12 buttons">
+              <button *ngIf="!loading" type="submit" class="btn btn-primary" [disabled]="!newUserForm.form.valid">Create</button>
+            </div>
+            <div class="col-md-12 response">
+              <i *ngIf="loading" class="fa fa-spinner fa-spin" aria-hidden="true"></i>
+              <div *ngIf="newAccountResponse">
+                <h4>{{newAccountResponse}}</h4>
+              </div>
+              <div *ngIf="newAccountResponseDetail">
+                <p>{{newAccountResponseDetail}}</p>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
