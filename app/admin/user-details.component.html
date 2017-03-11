@@ -2,38 +2,48 @@
   <div class="card-block">
     <h4>{{selectedUser.username}}</h4>
     <form (ngSubmit)="editAccount()" #editUserForm="ngForm">
-      <div class="col-md-6 user-input">
-        <label for="first-name">First Name</label>
-        <input id="first-name" class="form-control" [(ngModel)]="selectedUser.firstName" name="firstName" required />
+      <div class="row user-input">
+        <div class="col-md-6">
+          <label for="first-name">First Name</label>
+          <input id="first-name" class="form-control" [(ngModel)]="selectedUser.firstName" name="firstName" required />
+        </div>
+        <div class="col-md-6">
+          <label for="last-name">Last Name</label>
+          <input id="last-name" class="form-control" [(ngModel)]="selectedUser.lastName" name="lastName" required />
+        </div>
       </div>
-      <div class="col-md-6 user-input">
-        <label for="last-name">Last Name</label>
-        <input id="last-name" class="form-control" [(ngModel)]="selectedUser.lastName" name="lastName" required />
+      <div class="row user-input">
+        <div class="col-md-12">
+          <label for="email">Email</label>
+          <input id="email" class="form-control" [(ngModel)]="selectedUser.email" type="email" name="email" required />
+        </div>
       </div>
-      <div class="col-md-12 user-input">
-        <label for="email">Email</label>
-        <input id="email" class="form-control" [(ngModel)]="selectedUser.email" type="email" name="email" required />
+      <div class="row user-input">
+        <div class="col-md-6">
+          <label for="password1">New Password</label>
+          <input id="password1" type="password" class="form-control" [(ngModel)]="password1" name="password1" />
+        </div>
+        <div class="col-md-6">
+          <label for="password2">Confirm Password</label>
+          <input id="password2" type="password" class="form-control" [(ngModel)]="password2" name="password2" />
+        </div>
       </div>
-      <div class="col-md-6 user-input">
-        <label for="password1">New Password</label>
-        <input id="password1" type="password" class="form-control" [(ngModel)]="password1" name="password1" />
-      </div>
-      <div class="col-md-6 user-input">
-        <label for="password2">Confirm Password</label>
-        <input id="password2" type="password" class="form-control" [(ngModel)]="password2" name="password2" />
-      </div>
-      <div class="col-md-12 buttons">
-        <button type="submit" class="btn btn-secondary" [disabled]="!editUserForm.form.valid">Update</button>
-        <button class="btn btn-danger" (click)="deleteUser(selectedUser)">Delete</button>
+      <div class="row buttons">
+        <div class="col-md-12">
+          <button type="submit" class="btn btn-secondary" [disabled]="!editUserForm.form.valid">Update</button>
+          <button class="btn btn-danger" (click)="deleteUser(selectedUser)">Delete</button>
+        </div>
       </div>
     </form>
-    <div class="col-md-12 response">
-      <i *ngIf="loading" class="fa fa-spinner fa-spin" aria-hidden="true"></i>
-      <div *ngIf="response">
-        <h4>{{response}}</h4>
-      </div>
-      <div *ngIf="responseDetail">
-        <p>{{responseDetail}}</p>
+    <div class="row response">
+      <div class="col-md-12">
+        <i *ngIf="loading" class="fa fa-spinner fa-spin" aria-hidden="true"></i>
+        <div *ngIf="response">
+          <h4>{{response}}</h4>
+        </div>
+        <div *ngIf="responseDetail">
+          <p>{{responseDetail}}</p>
+        </div>
       </div>
     </div>
   </div>

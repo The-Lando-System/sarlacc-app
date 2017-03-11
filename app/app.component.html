@@ -1,17 +1,13 @@
-<div class="container">
+<nav class="navbar navbar-inverse bg-inverse fixed-top">
+  <a class="navbar-brand" href="#" routerLink="/login">Sarlacc {{welcome}}</a>
+</nav>
+<div class="container" style="margin-top:65px;">
   <div class="row">
-    <h1>Sarlacc {{welcome}}</h1>
-  </div>
-</div>
-<div class="container">
-  <div class="row">
-    <nav>
-      <a routerLink="/home" routerLinkActive="active">Home</a>
+    <nav id="nav-id">
       <a *ngIf="isAdmin()" routerLink="/new-account" routerLinkActive="active">Create Account</a>
       <a *ngIf="isAdmin()" routerLink="/admin" routerLinkActive="active">Administration</a>
-      <a routerLink="/login" routerLinkActive="active">Login</a>
     </nav>
   </div>
 </div>
-
+<hr/>
 <router-outlet></router-outlet>
