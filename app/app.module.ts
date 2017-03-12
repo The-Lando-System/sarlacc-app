@@ -6,7 +6,6 @@ import { HttpModule } from '@angular/http';
 import { CookieService } from 'angular2-cookie/services/cookies.service';
 
 import { AppComponent }  from './app.component';
-import { HomeComponent } from './home/home.component';
 import { NewAccountComponent } from './new-account/new-account.component';
 import { AdminComponent } from './admin/admin.component';
 import { LoginComponent } from './login/login.component';
@@ -22,12 +21,7 @@ import { ErrorService } from './error/error.service';
     RouterModule.forRoot([
       {
         path: '',
-        redirectTo: '/home',
-        pathMatch: 'full'
-      },
-      {
-        path: 'home',
-        component: HomeComponent
+        component: LoginComponent
       },
       {
         path: 'new-account',
@@ -40,16 +34,11 @@ import { ErrorService } from './error/error.service';
       {
         path: 'admin/:id',
         component: AdminComponent
-      },
-      {
-        path: 'login',
-        component: LoginComponent
       }
     ])
   ],
   declarations: [ 
   	AppComponent,
-  	HomeComponent,
     NewAccountComponent,
     AdminComponent,
     LoginComponent,

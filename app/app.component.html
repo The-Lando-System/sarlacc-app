@@ -1,13 +1,15 @@
 <nav class="navbar navbar-inverse bg-inverse fixed-top">
-  <a class="navbar-brand" href="#" routerLink="/login">Sarlacc {{welcome}}</a>
+  <a class="navbar-brand" href="#" routerLink="/">Sarlacc {{welcome}}</a>
 </nav>
-<div class="container" style="margin-top:65px;">
+<div *ngIf="!isAdmin()" style="margin-top:65px;">
+</div>
+<div *ngIf="isAdmin()" class="container" style="margin-top:65px;">
   <div class="row">
     <nav id="nav-id">
-      <a *ngIf="isAdmin()" routerLink="/new-account" routerLinkActive="active">Create Account</a>
-      <a *ngIf="isAdmin()" routerLink="/admin" routerLinkActive="active">Administration</a>
+      <a routerLink="/new-account" routerLinkActive="active">Create Account</a>
+      <a routerLink="/admin" routerLinkActive="active">Administration</a>
     </nav>
   </div>
 </div>
-<hr/>
+<hr *ngIf="isAdmin()"/>
 <router-outlet></router-outlet>
