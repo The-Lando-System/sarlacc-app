@@ -54,6 +54,12 @@ export class LoginComponent implements OnInit {
     this.route.queryParams.forEach((params: Params) => {
       this.redirectUri = params['redirectUri'];
     })
+    this.route.params.forEach((params: Params) => {
+      let token = params['token'];
+      if (token){
+        this.loginService.saveToken(token);
+      }
+    })
   }
 
   login(): void {

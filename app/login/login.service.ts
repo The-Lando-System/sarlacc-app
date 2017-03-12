@@ -35,4 +35,9 @@ export class LoginService {
       });
   }
 
+  saveToken(token: string): void {
+    this.cookieService.put('access-token',token);
+    this.broadcaster.broadcast('Login','The user logged in');
+  }
+
 }

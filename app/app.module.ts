@@ -24,6 +24,10 @@ import { ErrorService } from './error/error.service';
         component: LoginComponent
       },
       {
+        path: 'token/:token',
+        component: LoginComponent
+      },
+      {
         path: 'new-account',
         component: NewAccountComponent
       },
