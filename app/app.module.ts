@@ -6,9 +6,9 @@ import { HttpModule } from '@angular/http';
 import { CookieService } from 'angular2-cookie/services/cookies.service';
 
 import { AppComponent }  from './app.component';
-import { NewAccountComponent } from './new-account/new-account.component';
+import { NewAccountComponent } from './admin/new-account.component';
 import { AdminComponent } from './admin/admin.component';
-import { LoginComponent } from './login/login.component';
+import { HomeComponent } from './home/home.component';
 import { UserDetailsComponent } from './admin/user-details.component';
 
 import { ErrorService } from './error/error.service';
@@ -21,11 +21,11 @@ import { ErrorService } from './error/error.service';
     RouterModule.forRoot([
       {
         path: '',
-        component: LoginComponent
+        component: HomeComponent
       },
       {
         path: 'token/:token',
-        component: LoginComponent
+        component: HomeComponent
       },
       {
         path: 'new-account',
@@ -45,7 +45,7 @@ import { ErrorService } from './error/error.service';
   	AppComponent,
     NewAccountComponent,
     AdminComponent,
-    LoginComponent,
+    HomeComponent,
     UserDetailsComponent
   ],
   providers: [

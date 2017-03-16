@@ -2,26 +2,26 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ActivatedRoute, Params } from '@angular/router';
 
-import { Credentials } from './credentials';
-import { LoginService } from './login.service';
-import { TestAccessService } from './test-access.service';
-import { Token } from './token';
-import { User } from './user';
+import { Credentials } from '../login/credentials';
+import { LoginService } from '../login/login.service';
+import { TestAccessService } from '../login/test-access.service';
+import { Token } from '../login/token';
+import { User } from '../login/user';
 
 import { ErrorService } from '../error/error.service';
 import { Error } from '../error/error';
 
 @Component({
   moduleId: module.id,
-  selector: 'my-login',
-  templateUrl: 'login.component.html',
-  styleUrls: [ 'login.component.css' ],
+  selector: 'my-home',
+  templateUrl: 'home.component.html',
+  styleUrls: [ 'home.component.css' ],
   providers: [
     LoginService,
     TestAccessService
   ]
 })
-export class LoginComponent implements OnInit {
+export class HomeComponent implements OnInit {
 
   @Input()
   creds: Credentials;

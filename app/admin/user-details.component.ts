@@ -2,7 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
 
-import { AccountService } from '../new-account/account.service';
+import { AccountService } from '../admin/account.service';
 import { ErrorService } from '../error/error.service';
 import { User } from '../login/user';
 

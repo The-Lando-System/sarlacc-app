@@ -5,7 +5,7 @@ import { CookieService } from 'angular2-cookie/services/cookies.service';
 
 import { Credentials } from './credentials';
 import { Token } from './token';
-import { Broadcaster } from '../broadcaster';
+import { Broadcaster } from '../broadcaster/broadcaster';
 
 @Injectable()
 export class LoginService {
