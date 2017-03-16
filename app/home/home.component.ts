@@ -60,6 +60,7 @@ export class HomeComponent implements OnInit {
         this.loginService.saveToken(token);
       }
     })
+    this.getUserDetails();
   }
 
   login(): void {
@@ -72,6 +73,7 @@ export class HomeComponent implements OnInit {
         this.loginResponseDetail = null;
         this.loginLoading = false;
         this.creds = new Credentials();
+        this.getUserDetails();
         if (this.redirectUri){
           //this.router.navigate([this.redirectUri]);
           window.location.href = this.redirectUri + '?access_token=' + this.token.access_token;
@@ -85,7 +87,7 @@ export class HomeComponent implements OnInit {
       });
   } 
 
-  makeTestCall(): void {
+  getUserDetails(): void {
     this.testLoading = true;
     this.testAccessService.makeTestAccessCall()
       .then(res => {

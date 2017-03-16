@@ -30,18 +30,11 @@
 
     <div class="col-sm-6">
 
-      <!-- Test Access Card -->
-      <div class="card">
+      <!-- User Details Card -->
+      <div class="card" *ngIf="user">
         <div class="card-block">
-          <button *ngIf="!testLoading" class="btn btn-secondary" (click)="makeTestCall()">Test your access</button>
           <i *ngIf="testLoading" class="fa fa-spinner fa-spin" aria-hidden="true"></i>
-          <div *ngIf="testAccessResponse">
-            <h4>{{testAccessResponse}}</h4>
-          </div>
-          <div *ngIf="testAccessResponseDetail">
-            <p>{{testAccessResponseDetail}}</p>
-          </div>
-          <div *ngIf="user">
+          <div>
             <p>Username: {{user.username}}</p>
             <p>Role: {{user.role}}</p>
             <p>Name: {{user.firstName}} {{user.lastName}}</p>
