@@ -8,6 +8,7 @@ import { CookieService } from 'angular2-cookie/services/cookies.service';
 import { AppComponent }  from './app.component';
 import { NewAccountComponent } from './admin/new-account.component';
 import { AdminComponent } from './admin/admin.component';
+import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { UserDetailsComponent } from './admin/user-details.component';
 
@@ -22,6 +23,10 @@ import { ErrorService } from './error/error.service';
       {
         path: '',
         component: HomeComponent
+      },
+      {
+        path: 'login',
+        component: LoginComponent
       },
       {
         path: 'token/:token',
@@ -46,7 +51,8 @@ import { ErrorService } from './error/error.service';
     NewAccountComponent,
     AdminComponent,
     HomeComponent,
-    UserDetailsComponent
+    UserDetailsComponent,
+    LoginComponent
   ],
   providers: [
     CookieService,

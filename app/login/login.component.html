@@ -1,0 +1,31 @@
+<div class="container">
+  <div class="row">
+    <h4>{{title}}</h4>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6">
+
+      <!-- Login Card -->
+      <div class="card">
+        <div class="card-block">
+          <form (ngSubmit)="login()" #loginForm="ngForm">
+            <input class="form-control" placeholder="username" [(ngModel)]="creds.username" name="username" required />
+            <input class="form-control" placeholder="password" type="password" [(ngModel)]="creds.password" name="password" required />
+            <br/>
+            <button *ngIf="!loginLoading" type="submit" class="btn btn-secondary" [disabled]="!loginForm.form.valid">Login</button>
+            <i *ngIf="loginLoading" class="fa fa-spinner fa-spin" aria-hidden="true"></i>
+          </form>
+          <div *ngIf="loginResponse">
+            <h4>{{loginResponse}}</h4>
+          </div>
+          <div *ngIf="loginResponseDetail">
+            <p>{{loginResponseDetail}}</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

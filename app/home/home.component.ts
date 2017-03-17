@@ -2,6 +2,8 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ActivatedRoute, Params } from '@angular/router';
 
+import { Broadcaster } from '../broadcaster/broadcaster';
+
 import { Credentials } from '../login/credentials';
 import { LoginService } from '../login/login.service';
 import { TestAccessService } from '../login/test-access.service';
@@ -32,7 +34,7 @@ export class HomeComponent implements OnInit {
   @Input()
   token: Token;
 
-  title = 'Login';
+  title = 'User Details';
   loginResponse = '';
   loginResponseDetail = '';
   testAccessResponse = '';
@@ -46,7 +48,8 @@ export class HomeComponent implements OnInit {
     private testAccessService: TestAccessService,
     private errorService: ErrorService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private broadcaster: Broadcaster
   ){}
 
   ngOnInit(): void {
@@ -63,47 +66,27 @@ export class HomeComponent implements OnInit {
     this.getUserDetails();
   }
 
-  login(): void {
-    this.loginLoading = true;
-    this.loginService.login(this.creds)
-      .then(res => {
-        console.log(res);
-        this.token = res;
-        this.loginResponse = 'Success! Your token is saved as access-token in your cookies';
-        this.loginResponseDetail = null;
-        this.loginLoading = false;
-        this.creds = new Credentials();
-        this.getUserDetails();
-        if (this.redirectUri){
-          //this.router.navigate([this.redirectUri]);
-          window.location.href = this.redirectUri + '?access_token=' + this.token.access_token;
-        }
-      }).catch(res => {
-        this.loginResponse = 'Error...';
-
-        var error = this.errorService.handleError(res);
-        this.loginResponseDetail = error.status + ': ' + error.errorMessage;
-        this.loginLoading = false;
-      });
-  } 
-
   getUserDetails(): void {
     this.testLoading = true;
     this.testAccessService.makeTestAccessCall()
       .then(res => {
         this.user = res;
         console.log(res);
-        this.testAccessResponse = 'Success!';
-        this.testAccessResponseDetail = null;
         this.testLoading = false;
       }).catch(res=>{
-        this.testAccessResponse = 'Error...';
         this.user = null;
-
         var error = this.errorService.handleError(res);
-        this.testAccessResponseDetail = error.status + ': ' + error.errorMessage;
         this.testLoading = false;
+        let link = ['/login'];
+        this.router.navigate(link);
       });
+  }
+
+  listenForLogin(): void {
+   this.broadcaster.on<string>("Login")
+    .subscribe(message => {
+      this.getUserDetails();
+    });
   }
 
 }
