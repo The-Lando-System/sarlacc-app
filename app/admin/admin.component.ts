@@ -84,8 +84,6 @@ export class AdminComponent implements OnInit {
   }
 
   clearStatus(): void {
-    this.accountResponse = null;
-    this.accountResponseDetail = null;
     this.loading = false;
   }
 
