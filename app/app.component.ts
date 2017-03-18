@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { User } from './sarlacc-client/user';
 import { UserService } from './sarlacc-client/user.service';
@@ -21,7 +22,8 @@ export class AppComponent {
   constructor(
     private userService: UserService,
     private errorService: ErrorService,
-    private broadcaster: Broadcaster
+    private broadcaster: Broadcaster,
+    private router: Router
   ){}
 
   ngOnInit(): void {
@@ -55,5 +57,9 @@ export class AppComponent {
     }
   }
 
+  logout(): void {
+    this.userService.logout();
+    window.location.href = '/';
+  }
 
 }

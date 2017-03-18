@@ -27,3 +27,9 @@ h2 {
 #nav-id a.active {
   color: #039be5;
 }
+.inverse-color {
+    color: white;
+}
+.navbar-brand:visited {
+    color: white;
+}

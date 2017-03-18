@@ -6,6 +6,8 @@ import { User } from '../sarlacc-client/user'
 import { AccountService } from './account.service'
 import { ErrorService } from '../error/error.service'
 
+import { UserService } from '../sarlacc-client/user.service';
+
 @Component({
   moduleId: module.id,
   selector: 'my-new-account',
@@ -21,10 +23,13 @@ export class NewAccountComponent implements OnInit {
   password1 = '';
   password2 = '';
 
+  currentUser: User;
+
   @Input()
   newUser: User;
 
   constructor (
+    private userService: UserService,
     private newAccountService: AccountService,
     private errorService: ErrorService,
     private router: Router
@@ -34,6 +39,20 @@ export class NewAccountComponent implements OnInit {
     this.newUser = new User();
     this.password1 = '';
     this.password2 = '';
+    this.getLoggedInUser();
+  }
+
+  getLoggedInUser():void {
+    this.userService.returnUser()
+    .then(user => {
+      this.currentUser = user;
+      if (user.role !== 'ADMIN'){
+        window.location.href = '/';
+      }
+    })
+    .catch(err => {
+      window.location.href = '/';
+    });
   }
 
   createNewAccount(): void {

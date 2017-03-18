@@ -6,6 +6,7 @@ import { Location } from '@angular/common';
 import { AccountService } from '../admin/account.service';
 import { ErrorService } from '../error/error.service';
 import { User } from '../sarlacc-client/user';
+import { UserService } from '../sarlacc-client/user.service';
 
 @Component({
   moduleId: module.id,
@@ -20,6 +21,8 @@ export class AdminComponent implements OnInit {
   accountResponseDetail = '';
   loading = false;
 
+  currentUser: User;
+
   @Input()
   users: User[];
 
@@ -27,6 +30,7 @@ export class AdminComponent implements OnInit {
   selectedUser: User;
 
   constructor (
+    private userService: UserService,
     private accountService: AccountService,
     private errorService: ErrorService,
     private router: Router,
@@ -36,6 +40,7 @@ export class AdminComponent implements OnInit {
 
 
   ngOnInit(): void {
+    this.getLoggedInUser();
     this.route.params.forEach((params: Params) => {
       let id = params['id'];
       if (id){
@@ -43,6 +48,19 @@ export class AdminComponent implements OnInit {
       }
     })
     this.getUsers();
+  }
+
+  getLoggedInUser():void {
+    this.userService.returnUser()
+    .then(user => {
+      this.currentUser = user;
+      if (user.role !== 'ADMIN'){
+        window.location.href = '/';
+      }
+    })
+    .catch(err => {
+      window.location.href = '/';
+    });
   }
 
   ngOnChanges(changes: any) {
