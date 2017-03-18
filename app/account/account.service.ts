@@ -28,6 +28,11 @@ export class AccountService {
       .toPromise();
   }
 
+  editMyAccount(userToEdit: User): Promise<any> {
+    return this.http.put(this.newAccountUrl + '/me/', userToEdit, {headers: this.getHeaders()})
+      .toPromise();
+  }
+
   deleteAccount(userToDelete: User): Promise<any> {
     return this.http.delete(this.newAccountUrl + userToDelete.id, {headers: this.getHeaders()})
       .toPromise();

@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { Location } from '@angular/common';
 
 import { User } from '../sarlacc-client/user'
-import { AccountService } from './account.service'
+import { AccountService } from '../account/account.service'
 import { ErrorService } from '../error/error.service'
 
 import { UserService } from '../sarlacc-client/user.service';

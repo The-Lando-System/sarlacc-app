@@ -11,13 +11,75 @@
       <!-- User Details Card -->
       <div class="card" *ngIf="user">
         <div class="card-block">
-          <i *ngIf="loading" class="fa fa-spinner fa-spin" aria-hidden="true"></i>
-          <div>
-            <p>Username: {{user.username}}</p>
-            <p>Role: {{user.role}}</p>
-            <p>Name: {{user.firstName}} {{user.lastName}}</p>
-            <p>Email: {{user.email}}</p>
+          <div *ngIf="loading">
+            <i class="fa fa-spinner fa-spin" aria-hidden="true"></i>
           </div>
+          <div *ngIf="!loading">
+            <form (ngSubmit)="editAccount()" #editAccountForm="ngForm">
+              <div class="container">
+                <div class="row">
+                  <div class="col-sm-3">
+                    <strong>Username:</strong>
+                  </div>
+                  <div *ngIf="!updatedUser" class="col-sm-9">
+                    {{user.username}}
+                  </div>
+                  <div *ngIf="updatedUser" class="col-sm-9">
+                    <input class="user-input form-control" [(ngModel)]="updatedUser.username" name="username" required />
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-3">
+                    <strong>First Name:</strong>
+                  </div>
+                  <div *ngIf="!updatedUser" class="col-sm-9">
+                    {{user.firstName}}
+                  </div>
+                  <div *ngIf="updatedUser" class="col-sm-9">
+                    <input class="user-input form-control" [(ngModel)]="updatedUser.firstName" name="first-name" required />
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-3">
+                    <strong>Last Name:</strong>
+                  </div>
+                  <div *ngIf="!updatedUser" class="col-sm-9">
+                    {{user.lastName}}
+                  </div>
+                  <div *ngIf="updatedUser" class="col-sm-9">
+                    <input class="user-input form-control" [(ngModel)]="updatedUser.lastName" name="last-name" required />
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-3">
+                    <strong>Email:</strong>
+                  </div>
+                  <div *ngIf="!updatedUser" class="col-sm-9">
+                    {{user.email}}
+                  </div>
+                  <div *ngIf="updatedUser" class="col-sm-9">
+                    <input class="user-input form-control" [(ngModel)]="updatedUser.email" name="email" required />
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-3">
+                    <strong>Role:</strong>
+                  </div>
+                  <div class="col-sm-9">
+                    {{user.role}}
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-12">
+                    <button *ngIf="updatedUser" type="submit" class="btn btn-primary" [disabled]="!editAccountForm.form.valid">Update</button>
+                    <button *ngIf="!updatedUser" class="btn btn-secondary" (click)="beginEditAccount()"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+                    <button *ngIf="updatedUser" class="btn btn-secondary" (click)="stopEditAccount()"><i class="fa fa-ban" aria-hidden="true"></i></button>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+
         </div>
       </div>
 

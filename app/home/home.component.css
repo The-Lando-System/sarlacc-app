@@ -5,3 +5,11 @@ input {
 button {
   margin-top: 10px;
 }
+
+.row {
+  margin-top: 10px;
+}
+
+.user-input {
+  margin-top: -5px;
+}

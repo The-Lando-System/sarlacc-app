@@ -2,7 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
 
-import { AccountService } from '../admin/account.service';
+import { AccountService } from '../account/account.service';
 import { ErrorService } from '../error/error.service';
 import { User } from '../sarlacc-client/user';
 
