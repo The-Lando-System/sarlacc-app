@@ -14,7 +14,7 @@
             <input class="form-control" placeholder="username" [(ngModel)]="creds.username" name="username" required />
             <input class="form-control" placeholder="password" type="password" [(ngModel)]="creds.password" name="password" required />
             <br/>
-            <button *ngIf="!loginLoading" type="submit" class="btn btn-secondary" [disabled]="!loginForm.form.valid">Login</button>
+            <button *ngIf="!loginLoading" type="submit" class="btn btn-primary" [disabled]="!loginForm.form.valid">Login</button>
             <i *ngIf="loginLoading" class="fa fa-spinner fa-spin" aria-hidden="true"></i>
           </form>
           <div *ngIf="loginResponse">
@@ -26,6 +26,9 @@
         </div>
       </div>
 
+    </div>
+    <div class="col-sm-6">
+      <img src="resources/images/sarlacc.png">
     </div>
   </div>
 </div>

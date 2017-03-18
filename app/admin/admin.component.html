@@ -5,19 +5,7 @@
 </div>
 <div class="container">
   <div class="row">
-    <div class="col-md-12">
-      <i *ngIf="loading" class="fa fa-spinner fa-spin" aria-hidden="true"></i>
-      <div *ngIf="accountResponse" id="admin-response-card">
-        <div *ngIf="accountResponse">
-          <h4>{{accountResponse}}</h4>
-        </div>
-        <div *ngIf="accountResponseDetail">
-          <p>{{accountResponseDetail}}</p>
-        </div>
-      </div>
-    </div>
-    
-    <div class="col-md-4">
+    <div class="col-md-6">
       <div class="list-group">
         <a *ngFor="let user of users" class="list-group-item list-group-item-action flex-column align-items-start" (click)="selectUser(user)">
           <div class="d-flex w-100 justify-content-between">
@@ -27,9 +15,12 @@
         </a>
       </div>
     </div>
-    <div class="col-md-8">
-      <user-details *ngIf="selectedUser" [(users)]="users" [(selectedUser)]="selectedUser">
+    <div class="col-md-6" *ngIf="selectedUser">
+      <user-details [(users)]="users" [(selectedUser)]="selectedUser">
       </user-details>
+    </div>
+    <div class="col-sm-6" *ngIf="!selectedUser">
+      <img src="resources/images/sarlacc.png">
     </div>
   </div>
 </div>

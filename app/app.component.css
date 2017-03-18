@@ -33,3 +33,7 @@ h2 {
 .navbar-brand:visited {
     color: white;
 }
+
+.bg-inverse {
+  background-color: #54493e!important;
+}

@@ -17,8 +17,6 @@ import { UserService } from '../sarlacc-client/user.service';
 })
 export class AdminComponent implements OnInit {
   title = 'Account Administration';
-  accountResponse = '';
-  accountResponseDetail = '';
   loading = false;
 
   currentUser: User;
@@ -81,9 +79,6 @@ export class AdminComponent implements OnInit {
         this.users = res;
         this.loading = false;
     }).catch(res => {
-        this.accountResponse = 'Error...';
-        var error = this.errorService.handleError(res);
-        this.accountResponseDetail = error.status + ': ' + error.errorMessage;
         this.loading = false;
     });
   }
