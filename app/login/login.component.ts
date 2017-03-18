@@ -2,10 +2,9 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ActivatedRoute, Params } from '@angular/router';
 
-import { Credentials } from '../login/credentials';
-import { LoginService } from '../login/login.service';
-import { Token } from '../login/token';
-import { User } from '../login/user';
+import { UserService } from '../sarlacc-client/user.service';
+import { Token } from '../sarlacc-client/token';
+import { User } from '../sarlacc-client/user';
 
 import { ErrorService } from '../error/error.service';
 import { Error } from '../error/error';
@@ -14,15 +13,9 @@ import { Error } from '../error/error';
   moduleId: module.id,
   selector: 'my-login',
   templateUrl: 'login.component.html',
-  styleUrls: [ 'login.component.css' ],
-  providers: [
-    LoginService
-  ]
+  styleUrls: [ 'login.component.css' ]
 })
 export class LoginComponent implements OnInit {
-
-  @Input()
-  creds: Credentials;
 
   @Input()
   user: User;
@@ -34,28 +27,29 @@ export class LoginComponent implements OnInit {
   loginResponse = '';
   loginResponseDetail = '';
   loginLoading = false;
+  creds = {};
 
   constructor(
-    private loginService: LoginService,
+    private userService: UserService,
     private errorService: ErrorService,
     private router: Router,
     private route: ActivatedRoute
   ){}
 
   ngOnInit(): void {
-    this.creds = new Credentials();
+    this.creds = {};
   }
 
   login(): void {
     this.loginLoading = true;
-    this.loginService.login(this.creds)
-      .then(res => {
-        console.log(res);
-        this.token = res;
-        this.loginResponse = 'Success! Your token is saved as access-token in your cookies';
+    this.userService.login(this.creds)
+      .then(user => {
+        console.log(user);
+        this.user = user;
+        this.loginResponse = 'Login Successful! Welcome to the Sarlacc, ' + user.firstName + '!';
         this.loginResponseDetail = null;
         this.loginLoading = false;
-        this.creds = new Credentials();
+        this.creds = {};
         let link = [''];
         this.router.navigate(link);
       }).catch(res => {

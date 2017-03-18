@@ -2,13 +2,11 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ActivatedRoute, Params } from '@angular/router';
 
-import { Broadcaster } from '../broadcaster/broadcaster';
+import { Broadcaster } from '../sarlacc-client/broadcaster';
 
-import { Credentials } from '../login/credentials';
-import { LoginService } from '../login/login.service';
-import { TestAccessService } from '../login/test-access.service';
-import { Token } from '../login/token';
-import { User } from '../login/user';
+import { UserService } from '../sarlacc-client/user.service';
+import { Token } from '../sarlacc-client/token';
+import { User } from '../sarlacc-client/user';
 
 import { ErrorService } from '../error/error.service';
 import { Error } from '../error/error';
@@ -17,16 +15,9 @@ import { Error } from '../error/error';
   moduleId: module.id,
   selector: 'my-home',
   templateUrl: 'home.component.html',
-  styleUrls: [ 'home.component.css' ],
-  providers: [
-    LoginService,
-    TestAccessService
-  ]
+  styleUrls: [ 'home.component.css' ]
 })
 export class HomeComponent implements OnInit {
-
-  @Input()
-  creds: Credentials;
 
   @Input()
   user: User;
@@ -35,17 +26,11 @@ export class HomeComponent implements OnInit {
   token: Token;
 
   title = 'User Details';
-  loginResponse = '';
-  loginResponseDetail = '';
-  testAccessResponse = '';
-  testAccessResponseDetail = '';
-  loginLoading = false;
-  testLoading = false;
+  loading = false;
   redirectUri = '';
 
   constructor(
-    private loginService: LoginService,
-    private testAccessService: TestAccessService,
+    private userService: UserService,
     private errorService: ErrorService,
     private router: Router,
     private route: ActivatedRoute,
@@ -53,37 +38,36 @@ export class HomeComponent implements OnInit {
   ){}
 
   ngOnInit(): void {
-    this.creds = new Credentials();
-    this.route.queryParams.forEach((params: Params) => {
-      this.redirectUri = params['redirectUri'];
-    })
     this.route.params.forEach((params: Params) => {
-      let token = params['token'];
-      if (token){
-        this.loginService.saveToken(token);
+      let accessToken = params['token'];
+      if (accessToken){
+        let token = new Token();
+        token.access_token = accessToken;
+        this.userService.putTokenInCookie(token);
+        window.location.href = '/';
       }
     })
     this.getUserDetails();
+    this.listenForLogin();
   }
 
   getUserDetails(): void {
-    this.testLoading = true;
-    this.testAccessService.makeTestAccessCall()
-      .then(res => {
-        this.user = res;
-        console.log(res);
-        this.testLoading = false;
+    this.loading = true;
+    this.userService.returnUser()
+      .then(user => {
+        this.user = user;
+        this.loading = false;
       }).catch(res=>{
         this.user = null;
         var error = this.errorService.handleError(res);
-        this.testLoading = false;
+        this.loading = false;
         let link = ['/login'];
         this.router.navigate(link);
       });
   }
 
   listenForLogin(): void {
-   this.broadcaster.on<string>("Login")
+   this.broadcaster.on<string>(this.userService.LOGIN_BCAST)
     .subscribe(message => {
       this.getUserDetails();
     });

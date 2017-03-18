@@ -11,7 +11,7 @@
       <!-- User Details Card -->
       <div class="card" *ngIf="user">
         <div class="card-block">
-          <i *ngIf="testLoading" class="fa fa-spinner fa-spin" aria-hidden="true"></i>
+          <i *ngIf="loading" class="fa fa-spinner fa-spin" aria-hidden="true"></i>
           <div>
             <p>Username: {{user.username}}</p>
             <p>Role: {{user.role}}</p>

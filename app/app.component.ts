@@ -1,19 +1,15 @@
 import { Component, Input } from '@angular/core';
 
-import { User } from './login/user';
-import { TestAccessService } from './login/test-access.service';
+import { User } from './sarlacc-client/user';
+import { UserService } from './sarlacc-client/user.service';
 import { ErrorService } from './error/error.service';
-import { Broadcaster } from './broadcaster/broadcaster';
+import { Broadcaster } from './sarlacc-client/broadcaster';
 
 @Component({
   moduleId: module.id,
   selector: 'my-app',
   templateUrl: 'app.component.html',
-  styleUrls: [ 'app.component.css' ],
-  providers: [
-    TestAccessService,
-    Broadcaster
-  ]
+  styleUrls: [ 'app.component.css' ]
 })
 export class AppComponent {
 
@@ -23,29 +19,32 @@ export class AppComponent {
   welcome = '';
 
   constructor(
-    private testAccessService: TestAccessService,
+    private userService: UserService,
     private errorService: ErrorService,
     private broadcaster: Broadcaster
   ){}
 
   ngOnInit(): void {
-    this.broadcaster.on<string>('Login')
-    .subscribe(message => {
-      this.userLoggedIn(message);
-    });
-    this.testAccessService.makeTestAccessCall()
-      .then(res => {
-        this.currentUser = res;
-        this.welcome = '- Welcome ' + this.currentUser.firstName + '!';
-      }).catch(res=>{
-        this.currentUser = null;
-        var error = this.errorService.handleError(res);
-      });
+    this.getUser();
+    this.listenForLogin();
   }
 
-  userLoggedIn(message: String): void {
-    console.log(message);
-    this.ngOnInit();
+  listenForLogin(): void {
+    this.broadcaster.on<string>(this.userService.LOGIN_BCAST)
+    .subscribe(message => {
+      this.getUser();
+    });
+  }
+
+  getUser(): void {
+    this.userService.returnUser()
+    .then(user => {
+      this.currentUser = user;
+      this.welcome = '- Welcome ' + this.currentUser.firstName + '!';
+    }).catch(res=>{
+      this.currentUser = null;
+      var error = this.errorService.handleError(res);
+    });
   }
 
   isAdmin(): boolean {

@@ -1,19 +1,20 @@
 import { Injectable } from '@angular/core';
 import { Headers, Http } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
-import { CookieService } from 'angular2-cookie/services/cookies.service';
 
-import { Credentials } from '../login/credentials';
-import { Token } from '../login/token';
-import { User } from '../login/user';
+import { Globals } from '../globals';
+
+import { UserService } from '../sarlacc-client/user.service';
+import { User } from '../sarlacc-client/user';
 
 @Injectable()
 export class AccountService {
-  private newAccountUrl = 'https://sarlacc.herokuapp.com/account/';
+  private newAccountUrl = this.globals.svc_domain + '/account/';
 
   constructor(
+    private globals: Globals,
     private http: Http,
-    private cookieService: CookieService
+    private userSevrice: UserService
   ){}
 
   createNewAccount(newUser: User): Promise<any> {
@@ -45,7 +46,7 @@ export class AccountService {
   }
 
   getHeaders(): Headers {
-    let access_token = this.cookieService.get('access-token');
+    let access_token = this.userSevrice.getToken().access_token;
     let headers = new Headers({
       'Authorization'  : 'Bearer ' + access_token
     });

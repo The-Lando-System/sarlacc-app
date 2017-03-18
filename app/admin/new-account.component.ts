@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
 
-import { User } from '../login/user'
+import { User } from '../sarlacc-client/user'
 import { AccountService } from './account.service'
 import { ErrorService } from '../error/error.service'
 

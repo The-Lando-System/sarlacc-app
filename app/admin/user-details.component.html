@@ -31,7 +31,7 @@
       <div class="row buttons">
         <div class="col-md-12">
           <button type="submit" class="btn btn-secondary" [disabled]="!editUserForm.form.valid">Update</button>
-          <button class="btn btn-danger" (click)="deleteUser(selectedUser)">Delete</button>
+          <a class="btn btn-danger" (click)="deleteUser(selectedUser)"><span style="color:white;">Delete</span></a>
         </div>
       </div>
     </form>
