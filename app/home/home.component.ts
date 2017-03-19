@@ -34,6 +34,10 @@ export class HomeComponent implements OnInit {
   loading = false;
   redirectUri = '';
   updatedUser: User = null;
+  password1 = '';
+  password2 = '';
+  message = '';
+
   constructor(
     private userService: UserService,
     private accountService: AccountService,
@@ -54,6 +58,7 @@ export class HomeComponent implements OnInit {
       }
     })
     this.updatedUser = null;
+    this.message = '';
     this.getUserDetails();
     this.listenForLogin();
   }
@@ -81,6 +86,7 @@ export class HomeComponent implements OnInit {
   stopEditAccount(): void {
     event.preventDefault();
     this.updatedUser = null;
+    this.message = '';
   }
 
   listenForLogin(): void {
@@ -91,14 +97,24 @@ export class HomeComponent implements OnInit {
   }
 
   editAccount(): void {
+
+    if (this.password1 !== this.password2) {
+      this.message = 'Error: passwords do not match!';
+      return;
+    }
+
+    this.message = '';
+
     this.loading = true;
-    this.updatedUser.password = '';
+    this.updatedUser.password = this.password1;
     this.accountService.editMyAccount(this.updatedUser)
     .then(user => {
       this.user = user;
       this.updatedUser = null;
+      this.message = 'Success!';
       this.loading = false;
     }).catch( error => {
+      this.message = 'Failed to update user!';
       this.loading = false;
     });
   }
