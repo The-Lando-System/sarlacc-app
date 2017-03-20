@@ -109,7 +109,7 @@ export class HomeComponent implements OnInit {
     this.updatedUser.password = this.password1;
     this.accountService.editMyAccount(this.updatedUser)
     .then(user => {
-      this.user = user;
+      this.user = user.json();
       this.updatedUser = null;
       this.message = 'Success!';
       this.loading = false;
