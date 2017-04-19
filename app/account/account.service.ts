@@ -1,11 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Headers, Http } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
+import { UserService, User } from 'sarlacc-angular-client';
 
 import { Globals } from '../globals';
-
-import { UserService } from '../sarlacc-client/user.service';
-import { User } from '../sarlacc-client/user';
 
 @Injectable()
 export class AccountService {

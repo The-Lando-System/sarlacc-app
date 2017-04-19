@@ -1,12 +1,11 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
+import { UserService, User} from 'sarlacc-angular-client';
 
-import { User } from '../sarlacc-client/user'
 import { AccountService } from '../account/account.service'
 import { ErrorService } from '../error/error.service'
 
-import { UserService } from '../sarlacc-client/user.service';
 
 @Component({
   moduleId: module.id,

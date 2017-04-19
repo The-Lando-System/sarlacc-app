@@ -1,14 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ActivatedRoute, Params } from '@angular/router';
+import { CookieService } from 'angular2-cookie/services/cookies.service';
+import { UserService, User, Token, Broadcaster } from 'sarlacc-angular-client';
 
 import { AccountService } from '../account/account.service';
-
-import { Broadcaster } from '../sarlacc-client/broadcaster';
-
-import { UserService } from '../sarlacc-client/user.service';
-import { Token } from '../sarlacc-client/token';
-import { User } from '../sarlacc-client/user';
 
 import { ErrorService } from '../error/error.service';
 import { Error } from '../error/error';
@@ -44,7 +40,8 @@ export class HomeComponent implements OnInit {
     private errorService: ErrorService,
     private router: Router,
     private route: ActivatedRoute,
-    private broadcaster: Broadcaster
+    private broadcaster: Broadcaster,
+    private cookieSvc: CookieService
   ){}
 
   ngOnInit(): void {
@@ -53,7 +50,7 @@ export class HomeComponent implements OnInit {
       if (accessToken){
         let token = new Token();
         token.access_token = accessToken;
-        this.userService.putTokenInCookie(token);
+        this.cookieSvc.put('access-token',token.access_token);
         window.location.href = '/';
       }
     })

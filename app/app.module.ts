@@ -12,8 +12,7 @@ import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { UserDetailsComponent } from './admin/user-details.component';
 
-import { UserService } from './sarlacc-client/user.service';
-import { Broadcaster } from './sarlacc-client/broadcaster';
+import { UserService, Broadcaster } from 'sarlacc-angular-client';
 
 import { ErrorService } from './error/error.service';
 

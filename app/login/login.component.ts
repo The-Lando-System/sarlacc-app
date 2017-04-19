@@ -1,10 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ActivatedRoute, Params } from '@angular/router';
-
-import { UserService } from '../sarlacc-client/user.service';
-import { Token } from '../sarlacc-client/token';
-import { User } from '../sarlacc-client/user';
+import { UserService, User, Token, Broadcaster } from 'sarlacc-angular-client';
 
 import { ErrorService } from '../error/error.service';
 import { Error } from '../error/error';

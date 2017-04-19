@@ -1,10 +1,8 @@
 import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
+import { UserService, User, Broadcaster } from 'sarlacc-angular-client';
 
-import { User } from './sarlacc-client/user';
-import { UserService } from './sarlacc-client/user.service';
 import { ErrorService } from './error/error.service';
-import { Broadcaster } from './sarlacc-client/broadcaster';
 
 @Component({
   moduleId: module.id,
