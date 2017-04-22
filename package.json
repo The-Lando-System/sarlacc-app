@@ -4,7 +4,7 @@
   "description": "Sarlacc Administration Website",
   "scripts": {
     "start": "tsc && concurrently \"tsc -w\" \"lite-server\" ",
-    "startProd": "tsc && concurrently \"tsc -w\" \"http-server\" ",
+    "startProd": "tsc && concurrently \"tsc -w\" \"http-server -p 3000\"  ",
     "docker-build": "docker build -t ng2-quickstart .",
     "docker": "npm run docker-build && docker run -it --rm -p 3000:3000 -p 3001:3001 ng2-quickstart",
     "pree2e": "npm run webdriver:update",
