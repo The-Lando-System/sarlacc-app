@@ -16,7 +16,6 @@ export class AccountService {
   ){}
 
   createNewAccount(newUser: User): Promise<any> {
-    newUser.role = 'USER';
     return this.http.post(this.newAccountUrl, newUser, {headers: this.getHeaders()})
       .toPromise();
   }

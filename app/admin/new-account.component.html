@@ -10,8 +10,20 @@
         <div class="card-block">
           <form (ngSubmit)="createNewAccount()" #newUserForm="ngForm">
             <div class="row user-input">
-              <div class="col-md-12">
+              <div class="col-md-8">
                 <input class="form-control" placeholder="Username" [(ngModel)]="newUser.username" name="username" required />
+              </div>
+              <div class="col-md-4">
+                <div class="dropdown">
+                  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    {{newUser.role || 'Role'}}
+                  </button>
+                  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" (click)="newUser.role = 'USER'">User</a>
+                    <a class="dropdown-item" (click)="newUser.role = 'ADMIN'">Admin</a>
+                    <a class="dropdown-item" (click)="newUser.role = 'DEMO'">Demo</a>
+                  </div>
+                </div>
               </div>
             </div>
             <div class="row user-input">
