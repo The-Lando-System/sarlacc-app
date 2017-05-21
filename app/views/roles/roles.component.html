@@ -1,8 +1,34 @@
-<div class="card" *ngIf="user">
-  <div class="card-block">
-    <h3>App Roles for user: {{user.username}}</h3>
-    <div *ngFor="let appRole of appRoles" class="row">
-        {{appRole.appName}} - {{appRole.role}}
+<div class="container">
+  <div *ngFor="let appRole of appRoles" class="row">
+      {{appRole.appName}} - {{appRole.role}}
+  </div>
+  <div class="row">
+    <div class="col-md-4">
+      <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          App
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <a class="dropdown-item" (click)="newUser.role = 'USER'">User</a>
+          <a class="dropdown-item" (click)="newUser.role = 'ADMIN'">Admin</a>
+          <a class="dropdown-item" (click)="newUser.role = 'DEMO'">Demo</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Role
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <a class="dropdown-item" (click)="newUser.role = 'USER'">User</a>
+          <a class="dropdown-item" (click)="newUser.role = 'ADMIN'">Admin</a>
+          <a class="dropdown-item" (click)="newUser.role = 'DEMO'">Demo</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <button class="btn btn-primary">Add</button>
     </div>
   </div>
 </div>

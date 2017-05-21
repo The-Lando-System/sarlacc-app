@@ -19,6 +19,8 @@ export class AdminDetailsComponent implements OnInit {
   responseDetail = '';
   loading = false;
 
+  showRoles = false;
+
   password1 = '';
   password2 = '';
 

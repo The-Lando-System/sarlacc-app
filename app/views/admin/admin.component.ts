@@ -62,6 +62,7 @@ export class AdminComponent implements OnInit {
 
   selectUser(selectedUser: User): void {
     this.selectedUser = selectedUser;
+    this.showRoles = false;
     let link = ['/admin', selectedUser.id];
     this.router.navigate(link);
   }

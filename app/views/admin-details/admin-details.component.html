@@ -1,7 +1,20 @@
 <div class="card" *ngIf="selectedUser">
   <div class="card-block">
-    <h4>{{selectedUser.username}}</h4>
-    <form (ngSubmit)="editAccount()" #editUserForm="ngForm">
+    <div class="row">
+      <div class="col-md-8">
+        <h4>{{selectedUser.username}}</h4>
+      </div>
+      <div class="col-md-4">
+        <button class="btn btn-secondary" (click)="showRoles = !showRoles">
+          <span *ngIf="showRoles">Hide</span> Roles
+        </button>
+      </div>
+    </div>
+
+    <!-- Roles -->
+    <roles *ngIf="showRoles" [(user)]="selectedUser"></roles>
+
+    <form *ngIf="!showRoles" (ngSubmit)="editAccount()" #editUserForm="ngForm">
       <div class="row user-input">
         <div class="col-md-6">
           <label for="first-name">First Name</label>
@@ -35,6 +48,7 @@
         </div>
       </div>
     </form>
+    
     <div class="row response">
       <div class="col-md-12">
         <i *ngIf="loading" class="fa fa-spinner fa-spin" aria-hidden="true"></i>
