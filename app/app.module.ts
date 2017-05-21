@@ -13,6 +13,7 @@ import { LoginComponent } from './views/login/login.component';
 import { HomeComponent } from './views/home/home.component';
 import { UserDetailsComponent } from './views/user-details/user-details.component';
 import { AdminDetailsComponent } from './views/admin-details/admin-details.component';
+import { RolesComponent } from './views/roles/roles.component';
 
 import { UserService, Broadcaster } from 'sarlacc-angular-client';
 
@@ -60,7 +61,8 @@ import { Globals } from './globals';
     UserDetailsComponent,
     LoginComponent,
     NavbarComponent,
-    AdminDetailsComponent
+    AdminDetailsComponent,
+    RolesComponent
   ],
   providers: [
     CookieService,

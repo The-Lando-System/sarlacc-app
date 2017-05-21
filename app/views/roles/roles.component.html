@@ -1,0 +1,8 @@
+<div class="card" *ngIf="user">
+  <div class="card-block">
+    <h3>App Roles for user: {{user.username}}</h3>
+    <div *ngFor="let appRole of appRoles" class="row">
+        {{appRole.appName}} - {{appRole.role}}
+    </div>
+  </div>
+</div>

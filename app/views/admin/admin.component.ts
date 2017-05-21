@@ -60,10 +60,6 @@ export class AdminComponent implements OnInit {
     });
   }
 
-  ngOnChanges(changes: any) {
-    console.log(changes);
-  }
-
   selectUser(selectedUser: User): void {
     this.selectedUser = selectedUser;
     let link = ['/admin', selectedUser.id];
@@ -74,7 +70,6 @@ export class AdminComponent implements OnInit {
     this.loading = true;
     this.accountService.getUsers()
     .then(res => {
-        console.log(res);
         this.users = res;
         this.loading = false;
     }).catch(res => {
