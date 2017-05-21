@@ -4,8 +4,8 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { Location } from '@angular/common';
 import { UserService, User } from 'sarlacc-angular-client';
 
-import { AccountService } from '../account/account.service';
-import { ErrorService } from '../error/error.service';
+import { AccountService } from '../../services/account.service';
+import { ErrorService } from '../../services/error.service';
 
 @Component({
   moduleId: module.id,

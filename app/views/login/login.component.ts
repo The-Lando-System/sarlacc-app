@@ -3,8 +3,8 @@ import { Router } from '@angular/router';
 import { ActivatedRoute, Params } from '@angular/router';
 import { UserService, User, Token, Broadcaster } from 'sarlacc-angular-client';
 
-import { ErrorService } from '../error/error.service';
-import { Error } from '../error/error';
+import { ErrorService } from '../../services/error.service';
+import { Error } from '../../services/error';
 
 @Component({
   moduleId: module.id,

@@ -3,17 +3,17 @@ import { Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { User } from 'sarlacc-angular-client';
 
-import { AccountService } from '../account/account.service';
-import { ErrorService } from '../error/error.service';
+import { AccountService } from '../../services/account.service';
+import { ErrorService } from '../../services/error.service';
 
 @Component({
   moduleId: module.id,
-  selector: 'user-details',
-  templateUrl: 'user-details.component.html',
-  styleUrls: [ 'user-details.component.css' ],
+  selector: 'admin-details',
+  templateUrl: 'admin-details.component.html',
+  styleUrls: [ 'admin-details.component.css' ],
   providers: [ AccountService ]
 })
-export class UserDetailsComponent implements OnInit {
+export class AdminDetailsComponent implements OnInit {
 
   response = '';
   responseDetail = '';

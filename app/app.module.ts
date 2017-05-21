@@ -6,15 +6,17 @@ import { HttpModule } from '@angular/http';
 import { CookieService } from 'angular2-cookie/services/cookies.service';
 
 import { AppComponent }  from './app.component';
-import { NewAccountComponent } from './admin/new-account.component';
-import { AdminComponent } from './admin/admin.component';
-import { LoginComponent } from './login/login.component';
-import { HomeComponent } from './home/home.component';
-import { UserDetailsComponent } from './admin/user-details.component';
+import { NavbarComponent } from './views/navbar/navbar.component';
+import { NewAccountComponent } from './views/new-account/new-account.component';
+import { AdminComponent } from './views/admin/admin.component';
+import { LoginComponent } from './views/login/login.component';
+import { HomeComponent } from './views/home/home.component';
+import { UserDetailsComponent } from './views/user-details/user-details.component';
+import { AdminDetailsComponent } from './views/admin-details/admin-details.component';
 
 import { UserService, Broadcaster } from 'sarlacc-angular-client';
 
-import { ErrorService } from './error/error.service';
+import { ErrorService } from './services/error.service';
 
 import { Globals } from './globals';
 
@@ -56,7 +58,9 @@ import { Globals } from './globals';
     AdminComponent,
     HomeComponent,
     UserDetailsComponent,
-    LoginComponent
+    LoginComponent,
+    NavbarComponent,
+    AdminDetailsComponent
   ],
   providers: [
     CookieService,

@@ -1,24 +1,21 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { CookieService } from 'angular2-cookie/services/cookies.service';
 import { UserService, User, Token, Broadcaster } from 'sarlacc-angular-client';
 
-import { AccountService } from '../account/account.service';
+import { AccountService } from '../../services/account.service';
 
-import { ErrorService } from '../error/error.service';
-import { Error } from '../error/error';
+import { ErrorService } from '../../services/error.service';
+import { Error } from '../../services/error';
 
 @Component({
   moduleId: module.id,
-  selector: 'my-home',
-  templateUrl: 'home.component.html',
-  styleUrls: [ 'home.component.css' ],
-  providers: [
-    AccountService
-  ]
+  selector: 'user-details',
+  templateUrl: 'user-details.component.html',
+  styleUrls: [ 'user-details.component.css' ],
+  providers: [ AccountService ]
 })
-export class HomeComponent implements OnInit {
+export class UserDetailsComponent implements OnInit {
 
   @Input()
   user: User;
