@@ -39,6 +39,16 @@ export class AppRolesService {
       });
   }
 
+  createAppRole(newAppRole:AppRole): Promise<AppRole> {
+    return this.http.post(this.appRoleUrl, newAppRole, {headers: this.getHeaders()})
+      .toPromise()
+      .then((res:any) => {
+          return res.json();
+      }).catch((err:any) => {
+          console.warn(err);
+      });
+  }
+
   getHeaders(): Headers {
     let access_token = this.userSevrice.getToken().access_token;
     let headers = new Headers({

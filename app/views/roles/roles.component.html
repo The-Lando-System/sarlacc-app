@@ -2,33 +2,31 @@
   <div *ngFor="let appRole of appRoles" class="row">
       {{appRole.appName}} - {{appRole.role}}
   </div>
-  <div class="row">
+  <div *ngIf="apps.length > 0" class="row">
     <div class="col-md-4">
       <div class="dropdown">
         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          App
+          {{ newAppRole.appName || 'App' }}
         </button>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-          <a class="dropdown-item" (click)="newUser.role = 'USER'">User</a>
-          <a class="dropdown-item" (click)="newUser.role = 'ADMIN'">Admin</a>
-          <a class="dropdown-item" (click)="newUser.role = 'DEMO'">Demo</a>
+          <a *ngFor="let app of apps" class="dropdown-item" (click)="newAppRole.appName = app.name">{{app.name}}</a>
         </div>
       </div>
     </div>
     <div class="col-md-4">
       <div class="dropdown">
         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Role
+          {{ newAppRole.role || 'Role' }}
         </button>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-          <a class="dropdown-item" (click)="newUser.role = 'USER'">User</a>
-          <a class="dropdown-item" (click)="newUser.role = 'ADMIN'">Admin</a>
-          <a class="dropdown-item" (click)="newUser.role = 'DEMO'">Demo</a>
+          <a class="dropdown-item" (click)="newAppRole.role = 'USER'">User</a>
+          <a class="dropdown-item" (click)="newAppRole.role = 'ADMIN'">Admin</a>
+          <a class="dropdown-item" (click)="newAppRole.role = 'DEMO'">Demo</a>
         </div>
       </div>
     </div>
     <div class="col-md-4">
-      <button class="btn btn-primary">Add</button>
+      <button class="btn btn-primary" (click)="addAppRole()">Add</button>
     </div>
   </div>
 </div>
