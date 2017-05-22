@@ -49,6 +49,15 @@ export class AppRolesService {
       });
   }
 
+  deleteAppRole(appRoleToRemove:AppRole): Promise<void> {
+    return this.http.delete(this.appRoleUrl + appRoleToRemove.username + '/' + appRoleToRemove.appName, {headers: this.getHeaders()})
+      .toPromise()
+      .then((res:any) => {
+      }).catch((err:any) => {
+          console.warn(err);
+      });
+  }
+
   getHeaders(): Headers {
     let access_token = this.userSevrice.getToken().access_token;
     let headers = new Headers({

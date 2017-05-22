@@ -1,6 +1,7 @@
 <div class="container">
   <div *ngFor="let appRole of appRoles" class="row">
-      {{appRole.appName}} - {{appRole.role}}
+      <a class="btn btn-secondary btn-no-outline" (click)="removeAppRole(appRole)"><i class="fa fa-trash" aria-hidden="true"></i></a>
+      <span style="margin-top:5px; margin-left:10px">{{appRole.appName}} - {{appRole.role}}</span>
   </div>
   <div *ngIf="apps.length > 0" class="row">
     <div class="col-md-4">
@@ -19,9 +20,9 @@
           {{ newAppRole.role || 'Role' }}
         </button>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-          <a class="dropdown-item" (click)="newAppRole.role = 'USER'">User</a>
-          <a class="dropdown-item" (click)="newAppRole.role = 'ADMIN'">Admin</a>
-          <a class="dropdown-item" (click)="newAppRole.role = 'DEMO'">Demo</a>
+          <a class="dropdown-item" (click)="newAppRole.role = 'USER'">USER</a>
+          <a class="dropdown-item" (click)="newAppRole.role = 'ADMIN'">ADMIN</a>
+          <a class="dropdown-item" (click)="newAppRole.role = 'DEMO'">DEMO</a>
         </div>
       </div>
     </div>

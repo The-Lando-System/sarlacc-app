@@ -64,6 +64,17 @@ export class RolesComponent implements OnInit {
     }).catch((err:any) => {});
   }
 
+  removeAppRole(appRoleToRemove:AppRole): void {
+    event.preventDefault();
+    this.appRolesSvc.deleteAppRole(appRoleToRemove)
+    .then((res:any) => {
+      let app:App = new App();
+      app.name = appRoleToRemove.appName;
+      this.apps.push(app);
+      this.removeAppRoleFromAppRoles(appRoleToRemove);
+    }).catch((err:any) => {});
+  }
+
   removeAppsFromAppRoles(): void {
     for (var i=0; i<this.appRoles.length; i++){
       for (var j=0; j<this.apps.length; j++){
@@ -71,6 +82,14 @@ export class RolesComponent implements OnInit {
           this.apps.splice(j,1);
           break;
         }
+      }
+    }
+  }
+
+  removeAppRoleFromAppRoles(appRole:AppRole): void {
+    for (var i=0; i<this.appRoles.length; i++){
+      if (this.appRoles[i].appName === appRole.appName){
+        this.appRoles.splice(i,1);
       }
     }
   }
