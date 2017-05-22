@@ -23,6 +23,8 @@ export class UserDetailsComponent implements OnInit {
   @Input()
   token: Token;
 
+  showRoles = false;
+
   title = 'User Details';
   loading = false;
   redirectUri = '';

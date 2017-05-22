@@ -67,15 +67,15 @@
                             <input class="user-input form-control" [(ngModel)]="password2" name="password2" type="password" />
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-sm-3">
-                            <strong>Role:</strong>
-                        </div>
-                        <div class="col-sm-9">
-                            {{user.role}}
-                        </div>
+                    <div *ngIf="!updatedUser" class="row">
+                        <a class="btn btn-secondary" (click)="showRoles = !showRoles">
+                            <span *ngIf="showRoles">Hide</span> Roles
+                        </a>
                     </div>
-                    <div class="row">
+                    <div *ngIf="showRoles && !updatedUser" class="row">
+                        <h4>TBD - List Roles here</h4>
+                    </div>
+                    <div *ngIf="!showRoles" class="row">
                         <div class="col-sm-12">
                             <button *ngIf="updatedUser" type="submit" class="btn btn-primary" [disabled]="!editAccountForm.form.valid">Update</button>
                             <button *ngIf="!updatedUser" class="btn btn-secondary" (click)="beginEditAccount()"><i class="fa fa-pencil" aria-hidden="true"></i></button>
