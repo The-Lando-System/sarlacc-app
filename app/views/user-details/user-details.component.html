@@ -73,7 +73,11 @@
                         </a>
                     </div>
                     <div *ngIf="showRoles && !updatedUser" class="row">
-                        <h4>TBD - List Roles here</h4>
+                        <ul class="list-group">
+                            <li *ngFor="let appRole of user.appRoles" class="list-group-item">
+                                <strong>{{appRole.appName}}</strong> : {{appRole.role}}
+                            </li>
+                        </ul>
                     </div>
                     <div *ngIf="!showRoles" class="row">
                         <div class="col-sm-12">

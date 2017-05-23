@@ -49,7 +49,7 @@ export class UserDetailsComponent implements OnInit {
       if (accessToken){
         let token = new Token();
         token.access_token = accessToken;
-        this.cookieSvc.put('access-token',token.access_token);
+        this.userService.putTokenInCookie(token);
         window.location.href = '/';
       }
     })
@@ -105,10 +105,7 @@ export class UserDetailsComponent implements OnInit {
     this.updatedUser.password = this.password1;
     this.accountService.editMyAccount(this.updatedUser)
     .then(user => {
-      this.user = user.json();
-      this.updatedUser = null;
-      this.message = 'Success!';
-      this.loading = false;
+      window.location.href = '/';
     }).catch( error => {
       this.message = 'Failed to update user!';
       this.loading = false;

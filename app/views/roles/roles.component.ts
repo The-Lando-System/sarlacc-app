@@ -60,6 +60,7 @@ export class RolesComponent implements OnInit {
     this.appRolesSvc.createAppRole(this.newAppRole)
     .then((newAppRole:AppRole) => {
       this.appRoles.push(newAppRole);
+      this.newAppRole.appName = '';
       this.removeAppsFromAppRoles();
     }).catch((err:any) => {});
   }

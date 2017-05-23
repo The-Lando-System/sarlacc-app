@@ -66,12 +66,6 @@ export class NewAccountComponent implements OnInit {
       this.newUser.password = this.password1;
     }
 
-    if (!this.newUser.role) {
-      this.newAccountResponse = 'Error...';
-      this.newAccountResponseDetail = 'Please choose a role!';
-      return;
-    }
-
     this.loading = true;
 
     this.newAccountService.createNewAccount(this.newUser)

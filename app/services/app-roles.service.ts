@@ -16,11 +16,11 @@ export class AppRolesService {
   constructor(
     private globals: Globals,
     private http: Http,
-    private userSevrice: UserService
+    private userSvc: UserService
   ){}
 
   getApps(): Promise<App[]> {
-    return this.http.get(this.appsUrl, {headers: this.getHeaders()})
+    return this.http.get(this.appsUrl, {headers: this.userSvc.getUserAuthHeaders()})
       .toPromise()
       .then((res:any) => {
           return res.json();
@@ -30,7 +30,7 @@ export class AppRolesService {
   }
 
   getUserAppRoles(username:string): Promise<AppRole[]> {
-    return this.http.get(this.appRoleUrl + username + '/', {headers: this.getHeaders()})
+    return this.http.get(this.appRoleUrl + username + '/', {headers: this.userSvc.getUserAuthHeaders()})
       .toPromise()
       .then((res:any) => {
           return res.json();
@@ -40,7 +40,7 @@ export class AppRolesService {
   }
 
   createAppRole(newAppRole:AppRole): Promise<AppRole> {
-    return this.http.post(this.appRoleUrl, newAppRole, {headers: this.getHeaders()})
+    return this.http.post(this.appRoleUrl, newAppRole, {headers: this.userSvc.getUserAuthHeaders()})
       .toPromise()
       .then((res:any) => {
           return res.json();
@@ -50,20 +50,12 @@ export class AppRolesService {
   }
 
   deleteAppRole(appRoleToRemove:AppRole): Promise<void> {
-    return this.http.delete(this.appRoleUrl + appRoleToRemove.username + '/' + appRoleToRemove.appName, {headers: this.getHeaders()})
+    return this.http.delete(this.appRoleUrl + appRoleToRemove.username + '/' + appRoleToRemove.appName, {headers: this.userSvc.getUserAuthHeaders()})
       .toPromise()
       .then((res:any) => {
       }).catch((err:any) => {
           console.warn(err);
       });
-  }
-
-  getHeaders(): Headers {
-    let access_token = this.userSevrice.getToken().access_token;
-    let headers = new Headers({
-      'Authorization'  : 'Bearer ' + access_token
-    });
-    return headers;
   }
 
 }
