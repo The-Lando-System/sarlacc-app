@@ -28,9 +28,6 @@ export class HomeComponent implements OnInit {
   title = 'User Details';
   loading = false;
   redirectUri = '';
-  updatedUser: User = null;
-  password1 = '';
-  password2 = '';
   message = '';
 
   constructor(
@@ -53,7 +50,6 @@ export class HomeComponent implements OnInit {
         window.location.href = '/';
       }
     })
-    this.updatedUser = null;
     this.message = '';
     this.getUserDetails();
     this.listenForLogin();
@@ -74,44 +70,10 @@ export class HomeComponent implements OnInit {
       });
   }
 
-  beginEditAccount(): void {
-    event.preventDefault();
-    this.updatedUser = Object.assign({},this.user);
-  }
-
-  stopEditAccount(): void {
-    event.preventDefault();
-    this.updatedUser = null;
-    this.message = '';
-  }
-
   listenForLogin(): void {
    this.broadcaster.on<string>(this.userService.LOGIN_BCAST)
     .subscribe(message => {
       this.getUserDetails();
-    });
-  }
-
-  editAccount(): void {
-
-    if (this.password1 !== this.password2) {
-      this.message = 'Error: passwords do not match!';
-      return;
-    }
-
-    this.message = '';
-
-    this.loading = true;
-    this.updatedUser.password = this.password1;
-    this.accountService.editMyAccount(this.updatedUser)
-    .then(user => {
-      this.user = user.json();
-      this.updatedUser = null;
-      this.message = 'Success!';
-      this.loading = false;
-    }).catch( error => {
-      this.message = 'Failed to update user!';
-      this.loading = false;
     });
   }
 

@@ -44,15 +44,6 @@ export class UserDetailsComponent implements OnInit {
   ){}
 
   ngOnInit(): void {
-    this.route.params.forEach((params: Params) => {
-      let accessToken = params['token'];
-      if (accessToken){
-        let token = new Token();
-        token.access_token = accessToken;
-        this.userService.putTokenInCookie(token);
-        window.location.href = '/';
-      }
-    })
     this.updatedUser = null;
     this.message = '';
     this.getUserDetails();

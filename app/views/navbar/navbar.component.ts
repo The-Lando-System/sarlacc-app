@@ -42,7 +42,16 @@ export class NavbarComponent {
   }
 
   isAdmin(): boolean {
-    return (this.user != null && this.user.role == 'ADMIN');
+
+    if (this.user != null){
+      for (let appRole of this.user.appRoles){
+        if (appRole.appName === 'sarlacc' && appRole.role === 'ADMIN'){
+          return true;
+        }
+      }
+    }
+    
+    return false;
   }
 
   logout(): void {

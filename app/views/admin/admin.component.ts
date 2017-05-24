@@ -51,9 +51,6 @@ export class AdminComponent implements OnInit {
     this.userService.returnUser()
     .then(user => {
       this.currentUser = user;
-      if (user.role !== 'ADMIN'){
-        window.location.href = '/';
-      }
     })
     .catch(err => {
       window.location.href = '/';
