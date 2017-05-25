@@ -1,1 +1,1 @@
-web: npm run tsc && concurrently "tsc -w" "spa-http-server -p $PORT --push-state"
+web: npm run tsc && concurrently "tsc -w" "http-server -p $PORT --push-state"
